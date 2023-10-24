@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>유용한 Emmet</title>
+  <style>
+    #sole1 {
+      color: red;
+      text-align: center;
+      font-size: 40px;
+      background-color: lightblue;
+      padding: 20px;
+      border: 2px solid black;
+    }
+    #sole2 {  
+      font-size: 20px;
+      padding: 5px 15px;
+      border: 2px dashed black;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <h1 id="sole1">유용한 Emmet을 익히자!</h1>
+</div>
+<div id="sole2">
+  <h3><em>[1] '!': 정해진 양식으로 자동 완성</em></h3>
+  <!-- 이건 다들 아실테니 따로 언급 안함 -->
+    <hr>
+
+  <h3><em>[2] 태그만 입력하는 경우</em></h3> 
+    <p><b>예시 1</b>: h1</p>
+    <!--
+    <h1></h1> 여는 태그와 닫는 태그 자동 완성 -->
+    <p><b>예시 2</b>: input</p>
+    <!--
+    <input type="text"> 특정 태그의 경우 속성까지 지정 -->
+    <hr> 
+
+  <h3><em>[3] '>': 부모-자식 태그로 형성</em></h3> 
+    <p><b>예시</b>: div>p</p>
+    <!--  
+    <div>
+      <p></p>
+    </div> -->
+    <hr>
+
+  <h3><em>[4] '+': 형제 태그로 형성</em></h3>
+    <p><b>예시</b>: h1+p</p>
+    <!--
+    <h1></h1>
+    <p></p> -->
+    <hr>
+
+  <h3><em>[5] '(태그)#아이디명'</em></h3>
+    <p><b>예시 1</b>: h1+p#demo</p>
+    <!--
+    <h1></h1>
+    <p id="demo"></p> -->
+    <p><b>예시 2</b>: #demo</p>
+    <!--
+    <div id="demo"></div> 기본값은 div -->
+    <hr>
+
+  <h3><em>[6] '(태그).클래스명'</em></h3>
+    <p><b>예시 1</b>: h1+p.demo</p>
+    <!-- 
+    <h1></h1>
+    <p class="demo"></p> -->
+    <p><b>예시 2</b>: .demo</p>
+    <!--
+    <div class="demo"></div> 기본값은 div --> 
+    <hr>
+
+  <h3><em>[7] '태그*숫자': 해당 태그의 반복</em></h3>
+    <p><b>예시</b>: p*5</p>
+    <!--
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p> -->
+    <hr>
+
+  <h3><em>[8] '태그{텍스트}': 태그 내에 텍스트 입력</em></h3>
+    <p><b>예시</b>: h1{유용한 Emmet}</p>
+    <!--
+    <h1>유용한 Emmet</h1> -->
+    <hr>
+
+  <h3><mark>▶ 몇 가지 응용 예시</mark></h3>
+    <p>h1+p*2+script</body></p>
+    <!--
+    <h1></h1>
+    <p></p>
+    <p></p>
+    <script></script> -->
+
+    <p>p#demo{유용한 Emmet을 익히자!}</p>
+    <!--
+    <p id="demo">유용한 Emmet을 익히자!</p> -->
+
+    <p>ul*2>li*3</p>
+    <!--
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul> -->
+
+    <p>h1*2+p*3</p>
+    <!--
+    <h1></h1>
+    <h1></h1>
+    <p></p>
+    <p></p>
+    <p></p> -->
+</div>
+</body>
+</html>

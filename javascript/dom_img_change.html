@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>img태그를 참조하여 이미지 변경하자</h1>
+    <img id="img1" src="./image/off.gif">
+    <script>
+        // 태그를 참조할경우 해당 태그에서 지원하는 속성 메소드를 사용해야한다.
+        function fn_bull_on() {
+        document.getElementById("img1").src = "./image/on.gif";  
+            }
+
+            /*위의 코드에서 document.getElementById("img1")는 
+            "img1" ID를 가진 <img> 요소를 선택합니다. 이를 img1 변수에 할당하고, 
+            innerHTML 속성을 사용하게되면 선택된 요소의 내용을 콘솔에 출력합니다.
+            */
+        </script>
+    <button type="button" onclick="fn_bull_on()">불켜기</button>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript HTML Events</h2>
+Enter your name: <input type="text" id="fname">
+<p>When you leave the input field, a function is triggered which transforms the input text to upper case.</p>
+
+<script>
+//https://www.w3schools.com/js/tryit.asp?filename=tryjs_events_onchange
+//6번줄처럼 쓰지않고 onchange="upperCase()"가 빠져서
+
+document.getElementById("fname").eonchange = upperCase;//() 는 안한다
+
+function upperCase() {
+  const x = document.getElementById("fname");
+  x.value = x.value.toUpperCase();
+}
+</script>
+
+</body>
+</html>
+/**/

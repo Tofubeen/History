@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>var 변수선언을 다시선언한 경우</h1>
+    <p id="demo"></p>
+    <script>
+        var carName = "volvo";
+        var carName; //재선을 하여도 에러가 발생되지 않고 값을 읽어 옴
+        document.getElementById("demo").innerHTML = carName;
+    </script>
+</body>
+</html>

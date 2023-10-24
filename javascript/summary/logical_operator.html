@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>논리 연산자, && || !</h1>
+    <script>
+
+        let x = 10;
+        let y = 20;
+        //논리 and 연산자
+        // x > 0 false 이면 , y > 10 코드가 true 또는 flase 일지라도
+        //if문이 true가 될수없으므로
+        //영향을 주지않아 동작되지 않도록 설계를 해두었다(중요)
+        if( x < 0 && y > 10) {
+            console.log("Test");
+        }
+        //논리 or 연산자
+        // x > 0 true 이면 , y > 10 코드가 true 또는 flase 일지라도
+        //if문이 true가 되는데 영향을 주지않기 때문에 동작되지 않도록 설계를 해두었다(중요)
+        if( x < 0 || y > 10) {
+            console.log("Test");
+        }
+    </script>
+</body>
+</html>

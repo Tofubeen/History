@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>함수의 순차적인 실행</h2>
+<p>함수를 각각 호출하는 형태</p>
+
+<p></p>
+<p id="demo"></p>
+
+<script>
+    // <p>태그에 더한 값을 출력
+function myDisplayer(some) {
+  document.getElementById("demo").innerHTML = some;
+}
+// 두 매개변수의 값을 더해서 반환하는 기능
+function myCalculator(num1, num2) {
+  let sum = num1 + num2;
+  return sum;
+}
+// 함수를 각각 호출
+let result = myCalculator(5, 5);
+myDisplayer(result); // 2
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 논리연산자 and:&& ,or : || , NOT : !</h1>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <script>
+        /*
+        && : 논리 and 연산자   좌, 우측의 값이 2개가 true 라면 ,결과가 true 가 되는 특징
+        || : 논리 or 연산자 
+        ! :논리 NOT 연산자
+        */
+
+        let x = 6; // 초기값 
+        let y = 3; // 
+        document.getElementById("demo").innerHTML = (x< 10 && y > 1) // true
+        document.getElementById("demo").innerHTML = (x< 10 && y < 1) // false
+        
+
+
+    </script>
+</body>
+</html>

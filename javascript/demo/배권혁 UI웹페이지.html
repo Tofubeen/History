@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <style>
+        h1 {
+            width: 70%;
+            margin: auto;
+            text-align: left;
+            font-weight: lighter;
+            font-size: x-large;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        table {
+            border-collapse:collapse ;
+            width: 70%;
+            margin: auto;
+        }
+        th {
+            text-align: center;
+            width: 10%;
+            padding: 5px 10px;
+            background-color: rgb(220, 220, 220);
+            color: black, ;
+            font-style: normal;
+        }
+
+        td {
+            padding: 5px 10px;
+            width: 75%;
+        }
+
+        p.submit {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+    <script>
+
+        function sendit() {
+
+            let reg_name = RegExp(/^[가-힣]{2,10}$/); 
+            let reg_id = RegExp(/^[a-zA-Z]+[0-9a-zA-Z]{5,10}$/); 
+            let reg_pw = RegExp(/^.*(?=^.{5,10}$)(?=.*\d)(?=.*[a-z]).*$/);
+            let reg_email = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+
+            let u_name = document.getElementById("u_name");
+            let u_id = document.getElementById("u_id");
+            let u_pw = document.getElementById("u_pw");
+            let u_repw = document.getElementById("u_repw");
+            let u_birth = document.getElementById("u_birth");
+            let gender1 = document.getElementById("gender1");
+            let gender2 = document.getElementById("gender2");
+            let email = document.getElementById("email"); 
+            let email1 = document.getElementById("email1");
+            let email2 = document.getElementById("email2");
+            let auth_confirm = document.getElementById("auth_confirm");
+            let sTel = document.getElementById("sTel");
+            let hTel1 = document.getElementById("hTel1");
+            let hTel2 = document.getElementById("hTel2");
+            let hTel3 = document.getElementById("hTel3");
+            let sample2_detailAddress = document.getElementById("sample2_detailAddress");
+
+
+            if(!empty_validate(u_name, "이름 입력요망")) return;
+            if(!reg_validate(reg_name, u_name, "이름은 한글만 사용가능")) return;
+
+            if(!empty_validate(u_id, "아이디 입력요망")) return;
+            if(!reg_validate(reg_id, u_id, "아이디는 영문, 숫자만 사용가능")) return;
+
+            
+            if(!empty_validate(u_pw, "비밀번호 입력요망")) return;
+            if(!reg_validate(reg_pw, u_pw, "비밀번호는 영문소문자, 숫자 혼합 사용가능")) return;
+            
+            if(u_pw.value != u_repw.value) {
+                alert("비밀번호 확인이 틀립니다.");
+                u_repw.value = "";
+                u_repw.focus();
+                return;
+            }
+
+            if(!empty_validate(u_birth, "생년월일 선택하세요")) return;
+
+            if(!gender1.checked && !gender2.checked) {
+                alert("성별을 선택하세요");
+                return;
+            }
+            email.value = email1.value + "@" + email2.value;
+
+            if(!empty_validate(email1, "메일 입력요망")) return;
+            if(!empty_validate(email2, "메일 입력요망")) return;
+            if(!reg_validate(reg_email, email, "이메일 형식이 다릅니다.")) return;
+
+
+
+            let rev_mail = document.getElementById("rev_mail");
+            let rev_sms = document.getElementById("rev_sms");
+
+            if(!rev_mail.checked) {
+                alert("메일 수신여부 체크를 하세요");
+                return;
+            }
+
+            
+
+            
+            
+            alert("유효성 검사 성공");
+
+
+            
+
+        }
+
+        function empty_validate(target, msg) {
+            if(target.value == "") {
+                alert(msg);
+                target.focus();
+                return false;
+            }
+            return true;
+        }
+
+        
+        
+        function reg_validate(re, target, msg ) {
+            if(!re.test(target.value)) {
+                target.focus();
+                alert(msg);
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+    <h1 style="background-color: whitesmoke;">기본정보</h1>
+    <form id="join_form" action="join_ok.html" method="post" enctype="application/x-www-form-urlencoded">
+        <table>
+            <tr>
+                <th>아이디</th>
+                <td>
+                    <p>
+                        <input type="text" id="u_id" name="u_id" class="txt1">
+                        <input type="button" value="아이디중복확인" >
+                        (영문 소문자, 숫자4~16자)
+                    </p>
+                    
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td>
+                    <input type="password" id="u_pw" name="u_pw">
+                    영문/최소 1개의 숫자 또는 특수문자('~!@^*0-_+[]{}/:,.<>/) 조합으로 8~16자리
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호 확인</th>
+                <td>
+                    <input type="password" id="u_repw">
+                </td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td>
+                    <input type="text" id="u_name" name="u_name" class="txt1">
+                </td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td>
+                    <p>
+                        <input type="text" id="email1">@<input type="text" id="email2">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>이메일 수신여부</th>
+                <td>
+                    <input type="radio">수신
+                    <input type="radio">수신안함
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호 확인시 질문</th>
+                <td>
+                    <select id="opt_id">
+                        <option>========선택========</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호 확인시 답변</th>
+                <td>
+                    <input type="text">
+                </td>
+            </tr>
+            
+            <tr>
+                <th>성별</th>
+                <td>
+                    <input type="radio" name="gender" id="gender1">남자
+                    <input type="radio" name="gender" id="gender2">여자
+                </td>
+            </tr>
+            <tr>
+                <th>생년월일</th>
+                <td>
+                    <select>
+                        <option>1900</option>
+                    </select>
+                    <select>
+                        <option>01</option>
+                    </select>
+                    <select>
+                        <option>11</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <p class="submit">
+            <input type="button" value="전송" class="btn1" onclick="sendit();">
+            <input type="reset" value="취소" class="btn1">
+        </p>
+    </form>
+    <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+        <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+        </div>
+        
+        <script>
+            document.getElementById("email3").addEventListener("change", emailSelect);
+    
+            function emailSelect() {
+                let email2 = document.getElementById("email2");
+                email2.value = document.getElementById("email3").value;
+            }
+        </script>
+    
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</body>
+</html>

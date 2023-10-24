@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>함수구문이 포함디어있는 json문자열을 object 변환</h1>
+    <p id="demo"></p>
+
+    <script>
+        const text = '{"name": "홍길동", "age": "function() {return 30;}", "country": "대한민국"}';
+        const obj = JSON.parse(text);//parse() 작업에서 age키의 함수내용을 파싱에서 제외시켰다
+
+        console.log(obj); //"function() {return 30;}" 문자열로 참조
+
+        
+
+        obj.age = eval("(" + obj.age + ")");
+        
+        // obj.age = eval("(" + obj.age + ")");
+
+        
+
+        
+        document.getElementById("demo").innerHTML = obj.age();
+    </script>
+</body>
+</html>

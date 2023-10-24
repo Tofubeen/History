@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Math.random() - 메서드 간단한응용1</h1>
+    <p>콘솔 로그로 예제확인</p>+
+    <script>
+        /*
+        Math.random() : 0.0 <= x < 1.0
+        Math.random() * 10 : 0.0 <= x < 10.0 
+        */
+       //0~9 범위의 숫자를 랜덤으로 가져오는 구문.
+       let x = Math.floor(Math.random() * 10);
+       console.log("x의 값은:?" , x);
+        //0~10 범위의 숫자를 랜덤으로 가져오는 구문.
+        x = Math.floor(Math.random() * 11);
+       console.log("x의 값은:?" , x);
+       //0~99 범위의 숫자를 랜덤으로 가져오는 구문.
+       x = Math.floor(Math.random() * 100);
+       console.log("x의 값은:?" , x);
+       //0~100 범위의 숫자를 랜덤으로 가져오는 구문.
+       x = Math.floor(Math.random() * 101);
+       console.log("x의 값은:?" , x);
+       
+        //0~9 범위의 숫자를 랜덤으로 가져오는 구문.
+        x = Math.floor(Math.random() * 10)+1;
+       console.log("x의 값은:?" , x);
+               //0~9 범위의 숫자를 랜덤으로 가져오는 구문.
+              x = Math.floor(Math.random() * 100)+1;
+       console.log("x의 값은:?" , x);
+
+
+
+       
+
+    </script>
+</body>
+</html>

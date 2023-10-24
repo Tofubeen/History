@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>use stric : this 지원 안함 </h1>
+
+    <script>
+        "use strict"; //this는 객체를 참조안함
+        //일반함수에서 this는 window 객체를 참조함
+        function myfunction() {
+            alert(this) ;
+        }
+            myfunction();{
+        }
+    </script>
+</body>
+</html>

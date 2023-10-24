@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>함수선언.두 수를 더하는 기능</h1>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <p id="result3"></p>
+    <p id="result4"></p>
+
+    <script>
+        //변수선언 : 테어터를 보관하는 기억장소를 생성하고, 기억장소를 가리키는 이름을 만든의미,
+        let x, y, z;
+        x = 10;
+        y = 20;
+        z = x + y; 
+        document.getElementById("result1").innerHTML = z;
+
+        //함수 정의(선언) 두 수를 더하는 기능
+        function add(a, b) {
+            return a + b; // return 키워드 : 함수를 종료하고 , 반환값을 호출하는 곳으로 보내는 기능
+        }
+            document.getElementById("result2").innerHTML = add (10, 20);
+            document.getElementById("result3").innerHTML = add (5, 10);
+
+        
+    </script>
+</body>
+</html>

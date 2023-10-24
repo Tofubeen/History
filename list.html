@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>글 목록</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+div#menu {
+    text-align: right;
+}
+nav#title{
+        font-size: large;
+        color: black;
+
+}
+td#x {
+    text-align: left;
+
+}
+td#y {
+text-align: center;
+}
+td#z {
+    text-align: right;
+
+}
+
+
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-list li a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.post-list li .date {
+    font-size: 14px;
+    color: #777;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>글 목록</h1>
+        <ul class="post-list">
+            <div id="menu"><button type="button">글쓰기</button>
+        </div>
+            <li>
+                <a href="/post/1">제육덮밥</a>
+                <a href="/post/1_1" id="x">밥아저씨</a>
+                <span class="date">2023-08-03</span>
+            </li>
+            <li>
+                <a href="/post/2">김치볶음밥</a>
+                <a href="/post/2_2" id="x">배씨</a>
+                <span class="date">2023-08-02</span>
+            </li>
+            <li>
+                <a href="/post/3">백종원 요리레시피</a>
+                <a href="/post/3_3" id="x">admin</a>
+                <span class="date">2023-08-01</span>
+            </li>
+        </ul>
+    </div>
+    <script>
+    
+    </script>
+</body>
+</html>

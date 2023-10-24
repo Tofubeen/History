@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JSON과 연관되어 사용되는 자바스크립트의 object 사용하기</h1>
+    <p id="demo"></p>
+    <p>object 객체의 값을 변경</p>
+    <p id="demo2"></p>
+
+    <script>
+        const myobj = {name: "홍길동", age: 100, addr: "대한민국" };
+        document.getElementById("demo").innerHTML = 
+        `이름은 ${myobj,name} 이고  나이는? ${myobj.age} 국적은 ${myobj.addr}`; 
+
+        //값은 변경
+        myobj.age = 150
+        myobj["country"] = "조선";
+        
+        document.getElementById("demo2").innerHTML = 
+        `이름은 ${myobj,name} 이고  나이는? ${myobj.age} 국적은 ${myobj.addr}`; 
+
+    //myobj.age = 150나 myobj["age"] = 150 나 같은 의미이다.
+
+    </script>
+</body>
+</html>

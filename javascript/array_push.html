@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>배열에 데이터 추가하기 : push()</h1>
+    <p id="demo"></p>
+    <button type="button" onclick="fruit_add()">과일추가</button>
+    <script>
+        let fruits =["사과", "배", "딸기"];
+        document.getElementById("demo").innerHTML = fruits;
+
+        function fruit_add() {
+            fruits.push("앵두");
+            document.getElementById("demo").innerHTML = fruits;
+        }
+    </script>
+</body>
+</html>

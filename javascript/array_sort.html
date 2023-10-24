@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>배열정렬</h1>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+
+    <script>
+        const fruits = ["Banana", "Orange", "Apple", "Mango"];
+        //"Banana" -> "banana" 대문자를 소문자로 변경도 해보면, 정렬결과가 다르다.
+
+        //B:   ,O:   ,A:     , M:
+        document.getElementById("demo1").innerHTML = fruits;
+        
+        //오름차순 정렬, 유니코드표 (Uni Code) 0~ 65535 , 아스키코드 0~127
+        // 내림차순 명령어는 지원안한다
+        fruits. sort(); //오름차순
+        
+        
+
+        document.getElementById("demo2").innerHTML = fruits;
+        
+        
+        fruits. reverse(); //역순 결과가 내림차순
+
+    </script>
+</body>
+</html>

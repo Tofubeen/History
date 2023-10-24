@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>배열에 데이터 추가하기 : 없는 인덱스 이용()</h1>
+    <p id="demo"></p>
+    <button type="button" onclick="fruit_add()">과일추가</button>
+    <script>
+        let fruits =["사과", "배", "딸기"];
+        document.getElementById("demo").innerHTML = fruits;
+
+        function fruit_add() {
+            //fruits.push("앵두");
+            fruits [fruits.length] ="앵두";
+            //랭쓰는 3이 나오는데 프루츠 3 = 앵두로 하면 앵두가 배열에 삽입된다
+            document.getElementById("demo").innerHTML = fruits;
+        }
+    </script>
+</body>
+</html>

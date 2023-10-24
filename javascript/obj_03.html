@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> object에 메소드 사용하기 </h1>
+    <p id="demo1"></p>
+    <script>
+        //객체는 속성과 메서드로 구성되어 있다.
+        //person
+        const person = {
+            name  : "홍길동",
+            age : 100,
+            addr : "창동",
+            fullname : function () {
+                return this.name +" " + this.addr;
+            }
+        };
+        // 객체로 묶어서 한 묶음으로 작성한 것
+
+        document.getElementById("demo1").innerHTML =person.fullname();
+        //함수를 인용 했을 경우엔 뒤에 괄호를 붙힌다
+
+    
+        // 1. 변수를 이용
+        // let thpe, model, color;
+
+        // 2. object를 이용
+        // const car = {type:"flat", model: 500, color: "white"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script> 
+</body>
+</html>

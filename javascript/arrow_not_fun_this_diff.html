@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript "this"</h1>
+
+<button id="btn">클릭</button>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+
+<script>
+// 화살표함수에서 this의 의미는 winddow 객체 또는 document 객체로 이벤트 등록시킨다
+// 둘다 this는 window 객체를 참조한다
+
+let hello = "";
+
+hello = () => {
+  document.getElementById("demo").innerHTML += this;
+}
+
+//The window object calls the function:
+window.addEventListener("load", hello);
+
+//A button object calls the function:
+document.getElementById("btn").addEventListener("click", hello);
+</script>
+
+</body>
+</html>

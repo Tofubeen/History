@@ -1,0 +1,22 @@
+package ch07.sec08.exam02;
+
+public class DriverExample {
+
+	public static void main(String[] args) {
+		
+		Driver driver = new Driver();
+	
+		// 버스 선택
+		Bus bus = new Bus();
+		driver.drive(bus);
+		
+		// 택시 선택
+		Taxi taxi = new Taxi();
+		driver.drive(taxi);
+		
+		// 자전거 선택
+		Bicycle bicycle = new Bicycle();
+		driver.drive(bicycle);
+	}
+
+}

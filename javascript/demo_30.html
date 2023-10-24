@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>"5" + 2 + 3 의 결과는?</h1>
+    <P id="demo"></P>
+    <script>
+        //문자 형변환 발생 = 숫자 더하기 연산중 문자가 들어오면 나머지 숫자들도 문자로 인식된다
+        let x = "5" + 2 + 3; // "5" + 2 + 3 -> "52" + 3 -> "52" + "3" -> "523" , 숫자로 된 문자뿐만 아니라 알파벳 같은 문자(ex. A or ㄱ)도 해당
+        document.getElementById("demo").innerHTML = x;
+    </script>
+</body>
+</html>

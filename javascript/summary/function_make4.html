@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>두 수를 이용한 덧셈, 뺄셈, 곱셈 ,나눗셈, 나머지를 구하는 예제</h1>
+    <input type="text" id="num1"><br>
+    <input type="text" id="num2"><br>
+    <input type="button" onclick="add('+')" value="+" >
+    <input type="button" onclick="sub('-')" value="-" >  
+    <input type="button" onclick="mul('*')" value="*">
+    <input type="button" onclick="div('/')" value="/">
+    <input type="button" onclick="mod('%')" value="%">
+
+    <p id="result"></p>
+
+    <script>
+
+
+        function info(op) {
+            let num1 = parseInt(document.getElementById("num1").value);
+            let num2 = parseInt(document.getElementById("num2").value);
+
+            switch(op) {
+                case  '+' :
+                    add(num1, num2);
+                    break; 
+                case  '+' :
+                    add(num1, num2);
+                    break; 
+                case  '+' :
+                    add(num1, num2);
+                    break; 
+                case  '+' :
+                    add(num1, num2);
+                    break; 
+                case  '+' :
+                    add(num1, num2);
+                    break;
+            }
+        }
+
+
+        
+        // 1)첫번째 방법
+        function display(result) {
+            document.getElementById("result").innerHTML = result;
+        }
+
+        function add(num1, num2) {
+            display(num1 + num2);
+        }
+        function sub(num1, num2) {
+            display(num1 + num2);
+        }
+        function mul(num1, num2) {
+            display(num1 + num2);
+        }
+        function div(num1, num2) {
+            display(num1 + num2);
+        }
+        function mod(num1, num2) {
+            display(num1 + num2);
+        }
+        
+
+
+
+
+        // 2번째 방법
+        // function add() {
+        //     let num1 = parseInt(document.getElementById("num1").value);
+        //     let num2 = parseInt(document.getElementById("num2").value);
+
+        //     document.getElementById("result").innerHTML = num1 + num2;
+        // }function sub() {
+        //     let num1 = parseInt(document.getElementById("num1").value);
+        //     let num2 = parseInt(document.getElementById("num2").value);
+
+        //     document.getElementById("result").innerHTML = num1 - num2;
+        // }function mul() {
+        //     let num1 = parseInt(document.getElementById("num1").value);
+        //     let num2 = parseInt(document.getElementById("num2").value);
+
+        //     document.getElementById("result").innerHTML = num1 * num2;
+        // }function div() {
+        //     let num1 = parseInt(document.getElementById("num1").value);
+        //     let num2 = parseInt(document.getElementById("num2").value);
+
+        //     document.getElementById("result").innerHTML = num1 / num2;
+        // }function mod() {
+        //     let num1 = parseInt(document.getElementById("num1").value);
+        //     let num2 = parseInt(document.getElementById("num2").value);
+
+        //     document.getElementById("result").innerHTML = num1 % num2;
+        // }
+    </script>
+</body>
+</html>

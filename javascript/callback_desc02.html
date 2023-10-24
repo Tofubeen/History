@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>ㅎ맛</h2>
+<p>JavaScript functions are executed in the sequence they are called.</p>
+
+<p>The result of the calculation is:</p>
+<p id="demo"></p>
+
+<script>
+function myDisplayer(some) {
+  document.getElementById("demo").innerHTML = some;
+}
+
+function myCalculator(num1, num2) {
+  let sum = num1 + num2;
+  myDisplayer(sum); //타 함수 호출
+}
+
+myCalculator(5, 5);
+</script>
+
+</body>
+</html>

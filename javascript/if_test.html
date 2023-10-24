@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>다중if문 연습</h1>
+    <p id="demo1"></p>
+    <script>
+        let jumsu = 95;
+        let x = "";
+
+        if(jumsu>=90) {
+            x = "A";
+        }
+        else if(jumsu>=80) {
+            x = "B";
+        }
+        else if(jumsu>=70) {
+            x = "C";
+        }
+        else if(jumsu>=60) {
+            x= "D";}
+            
+
+        document.getElementById("demo1").innerHTML = "당신의 성적은?: " + x;
+    </script>
+
+
+    
+</body>
+</html>

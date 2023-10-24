@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>함수 : 매개변수와 리턴값</h1>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <script>
+        // x, t : 인수, 매개변수 , 파라미터
+        function add(x, y) {
+            return x + y;
+        }
+
+        let resurt = add (10, 20);
+        document.getElementById("demo1").innerHTML = "add(10, 20):" + resurt;
+
+        document.getElementById("demo2").innerHTML = "add(100, 200):" + add(100, 200);     
+        //함수는 중괄호 안에 써야한다(return 필수)
+        //return은 갔다가 다시 돌아오는 함수
+    </script>
+</body>
+</html>

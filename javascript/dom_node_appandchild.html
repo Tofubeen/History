@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<>
+    <h1>노드 추가하기</h1>
+    <div id="course">
+    <p>자바</p>
+    <p>스프링</p>
+</div>
+    <button type="button" id="demo" onclick="childeAppend()">앨리먼트 추가</button>
+    <script>
+        function childeAppend() {
+            const para = document.createElement("p");
+            const node = document.createTextNode("mybatics");
+            para.appendChild(node);
+
+            const element = document.getElementById("course");
+            element.appendChild(para);
+        }
+    </script>
+</body>
+</html>

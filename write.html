@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>글 내용 보기</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.post-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.post-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.post-date {
+    color: #888;
+}
+
+.post-body {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.post-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit-button,
+.delete-button {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 8px 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+    background-color: #0056b3;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">글 내용 보기</h1>
+        <div class="post-content">
+            <h2 class="post-title">게시물 제목</h2>
+            <p class="post-date">작성일: 2023-08-03</p>
+            <div class="post-body">
+                밥을 못먹어서 배고프지만 이 또한 견뎌내리....
+            </div>
+            <div class="post-buttons">
+                <a href="#" class="edit-button">글 수정</a>
+                <a href="#" class="delete-button">글 삭제</a>
+            </div>
+        </div>
+        <a href="/list" class="back-link">목록으로 돌아가기</a>
+    </div>
+</body>
+</html>

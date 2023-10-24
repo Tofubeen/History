@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function btn_upper() {
+            let text = document.getElementById("demo").innerHTML;
+            document.getElementById("demo").innerHTML = text.toUpperCase();
+        }
+
+        function btn_lower() {
+            let text = document.getElementById("demo").innerHTML;
+            Document.getElementById("demo").innerHTML = text.tolowerCase();
+
+        }
+    </script>
+</head>
+<body>
+    <h1>toUpper(), toLower 에서 사용</h1>
+    <p id="demo">Hello World!</p>
+    <button type="button" onclick=="btn_upper()">대문자</button>
+    <button type="button">소문자</button>
+</body>
+</html>

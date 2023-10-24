@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>함수구문이 포함디어있는 json문자열을 object 변환</h1>
+    <p id="demo"></p>
+
+    <script>
+        const text = '{"name": "홍길동", "age": "function() {return 30;}", "country": "대한민국"}';
+        const obj = JSON.parse(text);
+
+        console.log(obj);
+
+        obj.age = eval("(" + obj.age + ")");
+
+
+        /*
+        eval() 함수는 문자열로 표현된 JavaScript 코드를 실행합니다.
+        obj.age는 문자열 형태로 저장된 함수 정의이기 때문에, 
+        eval()을 사용하여 해당 문자열을 실행 가능한 함수로 변환하여 obj.age에 다시 할당하고 있습니다.
+         */
+
+
+        document.getElementById("demo").innerHTML = obj.name + " , " + obj.age;
+    </script>
+</body>
+</html>

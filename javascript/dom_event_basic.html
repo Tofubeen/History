@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //호출시 this 를 이용하여 , 공통함수로 사용할 수가 있다.
+        function txtChange(obj){
+            //obj : 클릭한 태그를 참조하게된다.
+            // document.getElementById("demo").innerHTML = spring;
+            let color = "";
+            let name = "";
+            if(obj.jd === "spring") {
+                color = "red" ;
+                name = "Spring";
+            }else if(obj.jd === "oracle") {
+                color = "blue";
+                name = "Oracle";
+
+                // alert("오라클");
+            }
+            obj.style.color = color;
+            obj.innerHTML = name;
+            
+
+
+            console.log("obj",obj.jd);
+            // obj.document = "spring";
+        }
+    </script>
+</head>
+<body>
+    <h1>dom evernt</h1>
+    <h2 onclick="this.innerHTML = 'JAVA'">자바</h2>    
+    <h2 id="spring" onclick="txtChange(this)">스프링</h2>
+    <h2 id="oracle" onclick="txtChange(this)">오라클</h2>
+
+    
+</body>
+</html>

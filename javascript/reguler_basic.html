@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript String Methods</h1>
+<p>Search a string for "W3Schools", and display the position of the match:</p>
+
+<p id="demo"></p>
+
+<script>
+let text = "Visit W3Schools!"; 
+// let n = text.search("W3Schools"); 일반 문자열
+let n = text.search(/3Schools/); //정규식 문자열
+document.getElementById("demo").innerHTML = n;
+</script>
+
+</body>
+</html>
+

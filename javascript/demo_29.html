@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>let 변수선언을 다시선언한 경우</h1>
+    <p id="demo"></p>
+    <!-- 문자열 형변환 발생 타입이 문자열로 일치가 되어 진행된다(중요) -->
+    <!-- var로는 가능하나 let으로는 재선언이 불가 -->
+    // 일반적으로 보통 언어는 let과 동일함.
+
+    <script>
+        let carName = "volvo";
+        let carName; 
+        document.getElementById("demo").innerHTML = carName;
+    </script>
+</body>
+</html>

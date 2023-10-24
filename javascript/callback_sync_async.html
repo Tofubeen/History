@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>동기와 비동기 의미</h1>
+    <script>
+        // 동기 : 하나의 작업이 완료되어야 만 , 그 다음의 작업이 진행 될 수 있는 실행되는 의미
+        console.log("가")
+        console.log("나")
+        console.log("다")
+
+        //비동기 : 하나의 적업이 완료되는 것과 상관없이 , 그 다음의 작업이 진행되는 실행의미. 
+        console.log("가");
+        
+        //비동기
+        /*
+        setTimeout(() => {
+            console.log("나");
+        }, 1000);
+        */
+
+        setTimeout(function(){
+            console.log("나");      
+        }, 0);
+        
+        //동기
+        // setTimeout(console.log("나"), 1000);
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+        console.log("다");
+
+    </script>
+</body>
+</html>

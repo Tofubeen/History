@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>함수 정의 및 사용</h1>
+    <script>
+        //함수의 유형 :return 값 유무 - 2가지
+        //함수의 유형 : 매개변수 유무 - 2가지
+
+        // 함수유형1 : return 키워드 사용이 없는 형태 
+        function funA() {
+            document.write("Hello World");
+        }
+
+        function move() {
+            location.href = "https://www.naver.com/";
+        }
+
+        //매개변수의 url 주소값에 따라서, 이동하는 함수 . moveUrl
+
+
+    
+
+
+
+
+        //함수유형2 : return는 없고, 매개변수가 있는 형태
+        function funB(name) {
+            document.write(name + "님 안녕하세요");
+        }
+
+        function add(num1, num2) {
+            document.write("두 수의 합은" + (a + b));
+        }
+
+
+        
+        function moveUrl(url) {
+            location.href = url;
+        }
+
+        // moveUrl("https://www.naver.com/");
+        // moveUrl("https://www.daum.net/");
+        // moveUrl("https://www.google.com/");
+
+
+        //함수유형3 : return 있고 , 매개변수가 있는 형태
+        function sum(kor, eng, mat) {
+
+            return kor + eng + mat;
+        }
+
+        let tot = sum(100, 98, 78);
+        
+    </script>
+</body>
+</html>

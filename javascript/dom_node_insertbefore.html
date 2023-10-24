@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <h1>노드 삽입하기</h1>
+    <div id="course">
+    <p id="p1">자바</p>
+    <p id="p2">스프링</p>
+</div>
+    <button type="button" id="demo" onclick="childeAppend()">앨리먼트 삽입</button>
+    <script>
+        function childeAppend() {
+            const para = document.createElement("p"); // <p></p>
+            const node = document.createTextNode("mybatics");  //"mybatis"
+            para.appendChild(node); //<p>mybatics</p>
+
+            const element = document.getElementById("course");
+            const child = document.getElementById('p1'); // <p></p>
+
+            //div 태그안에 첫번째로 삽입하기
+            element.insertBefore(para,child);
+        }
+    </script>
+</body>
+</html>

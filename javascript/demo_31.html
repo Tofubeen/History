@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>"5" + 2 + 3 의 결과는?</h1>
+    <P id="demo"></P>
+    <script>
+        // 좌측에서 우측으로 계산이 진행된다.
+        //문자 형변환 발생 = 숫자 더하기 연산중 문자가 들어오면 나머지 숫자들도 문자로 인식된다
+        let x = 2 + 3 + "5"; // 5 + "5"  -> "5" + "5" -> "55" 
+        document.getElementById("demo").innerHTML = x;
+    </script>
+</body>
+</html>

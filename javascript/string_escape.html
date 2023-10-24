@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Escape sequence </h1>
+    <p id="demo"></p>
+    <script>
+        // 백슬래시 뒤에 문자나 숫자 조합이 오는 문자조합을 이스케이프 시퀀스  라고한다
+        // 줄 바꿈문자 작은따옴표 역슬래 문자등을 표현하기 위한 약속된 규칙
+
+       
+        // ex let text = "We are the so-called "Vikings" from the north.";
+        // ex let text = 'We are the so-called "Vikings" from the north.';
+        let text = "We are the so-called \"Vikings\" from the north.";
+        // 백슬래시 쓰면 됨
+        document.getElementById('demo').innerHTML = text;
+        alert('자바\t스프링\t오라클\n현재는 자바스크립트');
+    </script>
+</body>
+</html>

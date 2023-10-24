@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>감소연산자 : --</h1>
+    <p id="demo"></p>
+    
+    <script>
+            let x = 5;
+            x--;
+            let z = x;
+
+            // 변수뒤에 -- 쓰면 후위형 감소연산자 
+            // x변수에 -1을
+            // 뒤에 있을시엔 x와 + 1을 먼저 뺀후에 z값에 저장하고 그 다음에 x에다가 -1을 하여 x에 저장한다            
+            document.getElementById("demo").innerHTML = z; 
+
+    </script>
+</body>
+</html>
