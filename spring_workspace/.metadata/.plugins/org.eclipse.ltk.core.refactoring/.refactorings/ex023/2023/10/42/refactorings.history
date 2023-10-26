@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;sboard/src/main/resources&apos;&#x0D;&#x0A;- Original project: &apos;ex023&apos;&#x0D;&#x0A;- Destination element: &apos;sboard/src/main/resources&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     logback.xml&#x0D;&#x0A;     log4jdbc.log4j2.properties" description="Copy files" destination="=sboard/src\/main\/resources=/maven.pomderived=/true=/" element1="src/main/resources/logback.xml" element2="src/main/resources/log4jdbc.log4j2.properties" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1697788855273" units="0" version="1.0"/>
+</session>

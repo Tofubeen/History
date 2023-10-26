@@ -1,0 +1,139 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+    
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.101.0">
+    <title>Pricing example · Bootstrap v4.6</title>
+
+ 
+    <!-- Bootstrap core CSS -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<link rel="stylesheet" href="https://getbootstrap.com/docs/4.6/examples/pricing/pricing.css">
+
+    <!-- Favicons -->
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    
+    <!-- Custom styles for this template -->
+  
+  </head>
+  <body>
+    
+  <%@include file="/WEB-INF/views/comm/header.jsp" %>
+    
+<div class="container">
+  <div class="text-center">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+      <h3 class="box-title">회원가입</h3>
+      </div>
+      
+      
+      <form role="form">
+        <div class="box-body">
+        <div class="form-group row">
+          <label for="mbsp_id" class="col-2">아이디</label>
+          <div class="col-8">
+            <input type="text" class="form-control" name="mbsp_id" id="mbsp_id" placeholder="아이디 입력....">
+            
+            <div class="col-2">
+            <button type="button" class="btn btn-outline-info">IDCheck</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mbsp_password" class="col-2">비밀번호</label>
+          <div class="col-10">
+            <input type="password" class="form-control" name="mbsp_password" id="mbsp_password" placeholder="비밀번호 입력....">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mbsp_password2" class="col-2">비밀번호 확인</label>
+          <div class="col-10">
+            <input type="password" class="form-control" id="mbsp_password2" placeholder="비밀번호 확인....">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mbsp_name" class="col-2">이름</label>
+          <div class="col-10">
+            <input type="text" class="form-control" name="mbsp_name" id="mbsp_name" placeholder="이름입력....">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mbsp_email" class="col-2">전자우편</label>
+          <div class="col-10">
+            <input type="email" class="form-control" name="mbsp_email" id="mbsp_email" placeholder="전자우편입력....">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mbsp_zipcode" class="col-2">우편번호</label>
+          <div class="col-10">
+            <input type="text" class="form-control" name="mbsp_zipcode" id="mbsp_zipcode" placeholder="우편번호 입력....">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mbsp_addr" class="col-2">기본주소</label>
+          <div class="col-10">
+            <input type="text" class="form-control" name="mbsp_addr" id="mbsp_addr" placeholder="기본주소 입력.....">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mbsp_deaddr" class="col-2">상세주소</label>
+          <div class="col-10">
+            <input type="text" class="form-control" name="mbsp_deaddr" id="mbsp_deaddr" placeholder="상세주소 입력...">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="mbsp_phone" class="col-2">전화번호</label>
+          <div class="col-10">
+            <input type="text" class="form-control" name="mbsp_phone" id="mbsp_phone" placeholder="전화번호 입력....">
+          </div>
+        </div>
+        
+        </div>
+        
+        <div class="box-footer">
+        <button type="submit" class="btn btn-primary">회원가입</button>
+        </div>
+        </form>
+
+      
+      </div>
+      
+
+  
+
+ <%@include file="/WEB-INF/views/comm/footer.jsp" %>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
+    
+  </body>
+</html>
+    

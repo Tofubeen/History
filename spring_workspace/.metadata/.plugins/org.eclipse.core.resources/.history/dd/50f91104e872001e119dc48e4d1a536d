@@ -1,0 +1,5 @@
+package com.docmall.dto;
+
+public class EmailDTO {
+
+}

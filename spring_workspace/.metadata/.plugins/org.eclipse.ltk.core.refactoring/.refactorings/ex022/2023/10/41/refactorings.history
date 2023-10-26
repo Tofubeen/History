@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;com.demo.domain&apos; to &apos;ex022/src/main/java/com.demo.controller&apos;&#x0D;&#x0A;- Original project: &apos;ex022&apos;&#x0D;&#x0A;- Destination element: &apos;ex022/src/main/java/com.demo.controller&apos;&#x0D;&#x0A;- Original element: &apos;ex022/src/test/java/com.demo.domain&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" destination="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.demo.controller" element1="/src\/test\/java=/test=/true=/=/optional=/true=/=/maven.pomderived=/true=/&lt;com.demo.domain" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1697181061643" version="1.0"/>
+</session>

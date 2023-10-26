@@ -1,0 +1,10 @@
+package com.docmall.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController //컨트롤러 클래스가 ajax 용도로만 사용할 때 선언 어노테이션을 적용
+@RequestMapping("/email/*") //현재는 jsp 사용안할 예정
+public class EmailController {
+
+}

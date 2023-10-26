@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="demo00"/>
+<aop-project name="docmall"/>
+<aop-project name="sboard"/>
+<aop-project name="ex023"/>
+<aop-project name="Test"/>
+<aop-project name="ex00"/>
+<aop-project name="ex01"/>
+</aop-reference-model>
