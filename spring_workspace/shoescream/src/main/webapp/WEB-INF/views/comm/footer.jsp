@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12 col-md">
         
-        <small class="d-block mb-3 text-muted">since 2023</small>
+        <small class="d-block mb-3 text-muted">© 2017-2022</small>
       </div>
       <div class="col-6 col-md">
         <h5>Features</h5>

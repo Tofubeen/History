@@ -43,6 +43,6 @@
 	
 	<!-- service 패키지 -->
 	<context:component-scan base-package="com.docmall.service" />
-	<!-- mapper 패키지 (com.docmall.mapper를 찾아가 bean(객체)을 생성한다 -->
+	<!-- mapper 패키지 -->
 	<mybatis-spring:scan base-package="com.docmall.mapper"/>	
 </beans>

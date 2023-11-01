@@ -48,6 +48,33 @@
     
 <%@include file="/WEB-INF/views/comm/header.jsp" %>
 
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="resources/img/jordan1bw.jpg" class="mx-auto d-block w-50 h-50  " alt="이미지를 표시 할 수 없습니다.">
+    </div>
+    <div class="carousel-item">
+      <img src="resources/img/jordan1chicago.jpg" class="mx-auto d-block w-50 h-50 " alt="이미지를 표시 할 수 없습니다.">
+    </div>
+    <div class="carousel-item">
+      <img src="resources/img/jordan1coral.jpg" class="mx-auto d-block w-50 h-50 " alt="이미지를 표시 할 수 없습니다.">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+    <span class="material-symbols-outlined" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </button>
+</div>
+
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
   <h1 class="display-4">Pricing</h1>
   <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
