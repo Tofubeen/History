@@ -41,9 +41,14 @@
       <beans:property name="maxInMemorySize" value="10485756"></beans:property>
    </beans:bean>
    
-   <!-- 업로드 폴더경로 설정 -->
+   <!-- 메인 및 썸네일 이미지 업로드 폴더경로 설정 String uploadPath = new String("c:\\dev\\upload\\product\\")-->
    <beans:bean id="uploadPath" class="java.lang.String">
-   		<beans:constructor-arg value="c:\\dev\\upload\\product"></beans:constructor-arg>
+   		<beans:constructor-arg value="c:\\dev\\upload\\product\\"></beans:constructor-arg>
+   	</beans:bean>
+   
+   <!-- CkEditor에서 업로드 폴더경로 설정  -->
+   <beans:bean id="uploadCKPath" class="java.lang.String">
+   		<beans:constructor-arg value="C:\\dev\\upload\\ckeditor\\"></beans:constructor-arg>
    	</beans:bean>
    
 	<context:component-scan base-package="com.docmall.controller" />
