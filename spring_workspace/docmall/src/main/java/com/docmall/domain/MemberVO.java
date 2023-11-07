@@ -9,7 +9,7 @@ import lombok.ToString;
 /*
  - 주요사용되는 기능
  - 회원가입하기, 회원수정 폼, 회원수정하기
- - db회원테이블에서 정보를 읽어올 때
+ - db회원테이블에서 정보를 읽어올 때 
  */
 
 
@@ -18,7 +18,6 @@ import lombok.ToString;
 @Getter
 public class MemberVO {
 
-	//DB 연동경로 저장파일:
 	//멤버필드
 	private String	mbsp_id;
 	private String	mbsp_name;
@@ -27,12 +26,10 @@ public class MemberVO {
 	private String	mbsp_zipcode;
 	private String	mbsp_addr;
 	private String	mbsp_deaddr;
-	private String 	mbsp_q;
-	private String  mbsp_a;
 	private String	mbsp_phone;
 	private int		mbsp_point;
 	private Date	mbsp_lastlogin;
 	private Date	mbsp_datesub;
 	private Date	mbsp_updatedate;
-
+	
 }

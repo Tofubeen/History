@@ -56,13 +56,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="resources/img/jordan1bw.jpg" class="mx-auto d-block w-50 h-50  " alt="이미지를 표시 할 수 없습니다.">
+      <img src="/img/jordan1bw.jpg" class="mx-auto d-block w-50 h-50  " alt="이미지를 표시 할 수 없습니다.">
     </div>
     <div class="carousel-item">
-      <img src="resources/img/jordan1chicago.jpg" class="mx-auto d-block w-50 h-50 " alt="이미지를 표시 할 수 없습니다.">
+      <img src="/img/jordan1chicago.jpg" class="mx-auto d-block w-50 h-50 " alt="이미지를 표시 할 수 없습니다.">
     </div>
     <div class="carousel-item">
-      <img src="resources/img/jordan1coral.jpg" class="mx-auto d-block w-50 h-50 " alt="이미지를 표시 할 수 없습니다.">
+      <img src="/img/jordan1coral.jpg" class="mx-auto d-block w-50 h-50 " alt="이미지를 표시 할 수 없습니다.">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">

@@ -72,6 +72,62 @@
         </div>
       </div>
       
+      <ul>
+        <li>
+          <!-- Kakao 로그인 버튼 이미지 추가 -->
+          <img src="/kakao_login/ko/kakao_login_medium_narrow.png" id="kakaoLoginButton" onclick="kakaoLogin()">
+        </li>
+  <!--
+	<li onclick="kakaoLogout();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그아웃</span>
+      </a>
+	</li>
+  -->
+</ul>
+<!-- 카카오 스크립트 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+Kakao.init('ae7cab3b00d35f6608d621f5741c5b82'); //발급받은 키 중 javascript키를 사용해준다.
+console.log(Kakao.isInitialized()); // sdk초기화여부판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+        	  console.log(response)
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
+//카카오로그아웃  
+<!--
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+  }  
+-->
+</script>
+      
       <div class="box-footer">
       <button type="submit" class="btn btn-primary" id="btnlogin">로그인</button>
       </div>

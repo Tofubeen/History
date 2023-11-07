@@ -98,18 +98,6 @@
           <input type="text" class="form-control" name="mbsp_phone" id="mbsp_phone" value="${memberVO.mbsp_phone }" placeholder="전화번호입력...">
         </div>
       </div>
-      <div class="form-group row">
-        <label for="mbsp_phone" class="col-2">본인 확인 질문</label>
-        <div class="col-10">
-          <input type="text" class="form-control" name="mbsp_q" id="mbsp_q" value="${memberVO.mbsp_q }" placeholder="">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="mbsp_phone" class="col-2">본인 확인 답변</label>
-        <div class="col-10">
-          <input type="text" class="form-control" name="mbsp_a" id="mbsp_a" value="${memberVO.mbsp_a }" placeholder="">
-        </div>
-      </div>
       
       </div>
       
