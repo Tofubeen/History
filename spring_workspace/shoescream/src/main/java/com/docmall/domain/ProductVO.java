@@ -3,27 +3,23 @@ package com.docmall.domain;
 import java.util.Date;
 
 import lombok.Data;
-
 @Data
 public class ProductVO {
 
-	private Integer pro_num; // 시퀀스 생성
+	private Integer PRO_NUM; //시퀀스 생성
+	private Integer CG_CODE; //2차카테고리 코드
+	private String PRO_NAME;
+	private int PRO_PRICE;
+	private int PRO_DISCOUNT;
+	private String PRO_PUBLISHER;
+	private String PRO_CONTENT;
+	private String PRO_UP_FOLDER;
+	private String PRO_IMG;
+	private int PRO_AMOUNT;
+	private String PRO_BUY;
+	private Date PRO_DATE;
+	private Date PRO_UPDATEDATE;
 
-	private Integer cg_code; // 2차카테고리코드
-	private	String	pro_name;
-	private	int		pro_price;
-	private	int		pro_discount;
-	private	String	pro_publisher;
-	private String	pro_content;
 
-	private	String	pro_up_folder; //스프링에서 별도로 처리
-	private	String	pro_img; //스프링에서 별도로 처리
 
-	private	int		pro_amount;
-	private	String	pro_buy;
-
-	private	Date	pro_date;
-	private	Date	pro_updatedate;
-
-//	private MultipartFile uploadFile; 이거 여기다 써서 사용가능
 }

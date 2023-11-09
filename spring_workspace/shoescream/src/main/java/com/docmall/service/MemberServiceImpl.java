@@ -54,4 +54,9 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		memberMapper.delete(mbsp_id);
 	}
+
+	@Override
+	public String idConfirm(String mbsp_id) {
+		return memberMapper.idConfirm(mbsp_id);
+	}
 }

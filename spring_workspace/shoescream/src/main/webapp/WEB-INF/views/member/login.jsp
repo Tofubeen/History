@@ -34,6 +34,18 @@
           font-size: 3.5rem;
         }
       }
+      .help {
+        text-align: center; 
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+
+      }
+
+      .no_dot {
+      text-align: center;
+      list-style:none;
+      padding-left:0px;
+      }
     </style>
 
     <script>
@@ -72,12 +84,89 @@
         </div>
       </div>
       
+
       <div class="box-footer">
-      <button type="submit" class="btn btn-primary" id="btnlogin">로그인</button>
+        <button type="submit" class="btn btn-primary" id="btnlogin">로그인</button>
+        </div>
+        </form>
+        </div>
       </div>
-      </form>
+
+      <div class="help">
+        <tr>
+          <td>
+          	<a href="/member/findId">
+            	<span style="color: black" "cursor: pointer;">아이디찾기</span>
+            </a>
+          </td>
+          <td>&nbsp;&nbsp;|&nbsp;&nbsp;</td>
+          <td>
+            <a href="/member/findPw">
+            	<span style="color: black" "cursor: pointer;">비밀번호찾기</span>
+            </a>
+          </td>
+        </tr>
       </div>
-   </div>
+
+      <u class="no_dot">
+        <li>
+          <!-- Kakao 로그인 버튼 이미지 추가 -->
+          <span style="cursor: pointer;">
+            <img src="/kakao_login/ko/kakao_login_medium_narrow.png" id="kakaoLoginButton" onclick="kakaoLogin()">
+          </span>
+        </li>
+  <!--
+	<li onclick="kakaoLogout();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그아웃</span>
+      </a>
+	</li>
+  -->
+</ul>
+<!-- 카카오 스크립트 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+Kakao.init('ae7cab3b00d35f6608d621f5741c5b82'); //발급받은 키 중 javascript키를 사용해준다.
+console.log(Kakao.isInitialized()); // sdk초기화여부판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+        	  console.log(response)
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
+//카카오로그아웃  
+<!--
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+  }  
+-->
+</script>
+      
+      
 
   <%@include file="/WEB-INF/views/comm/footer.jsp" %>
 </div>

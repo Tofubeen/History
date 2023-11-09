@@ -17,13 +17,13 @@
 	
 	<update id="login_date" parameterType="String">
 	
-		UPDATE
+		UPDATE 
 			ADMIN_TBL
-		SET
-			ADMIN_VISIT_DATE = sysdate
-		WHERE 
-			ADMIN_ID = #{admin_id}			
-		
+		SET 
+			ADMIN_VISIT_DATE = SYSDATE
+		WHERE
+			ADMIN_ID = #{admin_id}
+	
 	</update>
 	
 
