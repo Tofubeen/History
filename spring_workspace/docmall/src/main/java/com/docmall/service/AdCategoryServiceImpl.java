@@ -31,6 +31,7 @@ public class AdCategoryServiceImpl implements AdCategoryService {
 
 	@Override
 	public CategoryVO get(Integer cg_code) {
+		// TODO Auto-generated method stub
 		return adCategoryMapper.get(cg_code);
 	}
 }

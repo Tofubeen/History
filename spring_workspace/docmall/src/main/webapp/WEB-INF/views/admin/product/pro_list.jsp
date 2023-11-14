@@ -122,7 +122,7 @@ desired effect
 						<div class="row">
 							<div class="col-md-4">
 								<button type="button" class="btn btn-primary" id="btn_check_modify1" role="button">체크상품수정1</button>	
-								<button type="button" class="btn btn-primary" id="btn_check_modify2" role="button">체크상품수정2</button>	
+                <button type="button" class="btn btn-primary" id="btn_check_modify2" role="button">체크상품수정2</button>	
 							<!--1)페이지번호 클릭할 때 사용  [이전]  1	2	3	4	5 [다음]  -->
 							<!--2)목록에서 상품이미지 또는 상품명 클릭할 때 사용   -->
 							  <form id="actionForm" action="" method="get">
@@ -318,29 +318,27 @@ desired effect
       console.log("상품가격", pro_price_arr );
       console.log("상품진열",pro_buy_arr );
 
-
       $.ajax({
       url: '/admin/product/pro_checked_modify1',
       type: 'post',
-      data: {pro_num_arr: pro_num_arr, pro_price_arr: pro_price_arr , pro_buy_arr: pro_buy_arr},
-      dataType:'text',
+      data: {pro_num_arr: pro_num_arr, pro_price_arr: pro_price_arr, pro_buy_arr: pro_buy_arr},
+      dataType: 'text',
       success: function(result) {
         if(result == "success") {
-          alert("체크상품이 수정되었습니다");
+          alert("체크상품이 수정되었읍니다.");
 
-
-          //db에서 다시 불러오는 작업
-          //1) location.href = "admin/product/pro_list";
-          //2) 현재 리스트 상태로 불러오는 의미
-          /*
+          //db에서 다시 불러오는 작업.
+          //1) location.href = "/admin/product/pro_list";
+          //2) 현재 리스트 상태로 불러오는 의미.
+          /* 
           actionForm.attr("method", "get");
-          actionForm.attr("action", "/admin,product/pro_list");
+          actionForm.attr("action", "/admin/product/pro_list");
           actionForm.submit();
           */
         }
       }
+     });
     }); 
-    });
 
     //체크박스수정2 버튼 클릭
     $("#btn_check_modify2").on("click", function(){
@@ -366,86 +364,81 @@ desired effect
       console.log("상품가격", pro_price_arr );
       console.log("상품진열",pro_buy_arr );
 
-
       $.ajax({
       url: '/admin/product/pro_checked_modify2',
       type: 'post',
-      data: {pro_num_arr: pro_num_arr, pro_price_arr: pro_price_arr , pro_buy_arr: pro_buy_arr},
-      dataType:'text',
+      data: {pro_num_arr: pro_num_arr, pro_price_arr: pro_price_arr, pro_buy_arr: pro_buy_arr},
+      dataType: 'text',
       success: function(result) {
         if(result == "success") {
-          alert("체크상품이 수정되었습니다");
+          alert("체크상품이 수정되었읍니다.");
 
-
-          //db에서 다시 불러오는 작업
-          //1) location.href = "admin/product/pro_list";
-          //2) 현재 리스트 상태로 불러오는 의미
-          /*
+          //db에서 다시 불러오는 작업.
+          //1) location.href = "/admin/product/pro_list";
+          //2) 현재 리스트 상태로 불러오는 의미.
+          /* 
           actionForm.attr("method", "get");
-          actionForm.attr("action", "/admin,product/pro_list");
+          actionForm.attr("action", "/admin/product/pro_list");
           actionForm.submit();
           */
         }
       }
+     });
     }); 
-    });
+   
+  
+  //상품등록
+  $("#btn_pro_insert").on("click", function() {
+    location.href = "/admin/product/pro_insert";
+  });
+    
+  //상품수정
+  $("button[name='btn_pro_edit']").on("click", function() {
+    
+    //수정 상품코드
+    let pro_num = $(this).parent().parent().find("input[name='check']").val();
 
-    //상품등록
-    $("btn_pro_insert").on("click", function() {
-      location.href = "/admin/product/pro_insert";
-    });
+    console.log(pro_num);
+    //뒤로가기 클릭후 다시 수정버튼 클릭시 코드 중복되는 부분때문에 제거.
+    actionForm.find("input[name='pro_num']").remove();
 
-    //상품수정
-    $("button[name='btn_pro_edit']").on("click" , function() {
+    // <input type="hidden" name="pro_num" id="pro_num" value="24" />
+    actionForm.append('<input type="hidden" name="pro_num" id="pro_num" value="' + pro_num + '" />');
+    
+    actionForm.attr("method", "get");
+    actionForm.attr("action", "/admin/product/pro_edit");
+    actionForm.submit();
+    
 
-      //수정 상품코드
-      let pro_num = $(this).parent().parent().find("input[name='check']").val();
+  });
 
-      console.log(pro_num);
-      //뒤로가기 클릭 후 다시 수정버튼 클릭시 코드 중복되는 부분때문에 제거
+  //상품삭제.  화살표함수 사용시 상품코드값을 읽을수 없다.
+  $(".btn_pro_del").on("click", function() {
+    
+    // text(): 입력양식태그가 아닌 일반태그의 값을 변경하거나 읽을 때 사용 
+    let pro_name = $(this).parent().parent().find(".pro_name").text();
+    if(!confirm(pro_name + " 상품을 삭제하겠읍니까?")) return;
 
-      actionForm.find("input[name='pro_num']").remove();
+    // val() : input, select, textarea태그의 값을 변경하거나 읽을 때 사용    
+    let pro_num = $(this).parent().parent().find("input[name='check']").val();
+    
+    console.log("상품코드", pro_num);
 
-      //<input type="hidden" name="pro_num" id="pro_num" />
+    actionForm.find("input[name='pro_num']").remove();
 
-      actionForm.append('<input type="hidden" name="pro_num" id="pro_num" value="' + pro_num + '" />')
-
-      actionForm.attr("method", "get");
-      actionForm.attr("action", "/admin/product/pro_edit");
-      actionForm.submit();
-
-
-    });
-
-    //상품삭제 . 화살표함수 사용시 상품코드 값을 읽을 수 없다.
-    $(".btn_pro_del").on("click", function() {
-
-      let pro_name =  $(this).parent().parent().find(".pro_name").text();
-      if(!confirm(pro_name + " 상품을 삭제하겠습니까?")) return;
-      
-
-      //val() : input , select , textarea태그의 값을 변경하거나 읽을 때 사용
-      let pro_num =  $(this).parent().parent().find("input[name='check']").val();
-      console.log("상품코드", pro_num);
+    // <input type="hidden" name="pro_num" id="pro_num" value="24" />
+    actionForm.append('<input type="hidden" name="pro_num" id="pro_num" value="' + pro_num + '" />');
+    
+    actionForm.attr("method", "post");
+    actionForm.attr("action", "/admin/product/pro_delete");
+    actionForm.submit();
 
 
-      
-      actionForm.find("input[name='pro_num']").remove();
-
-      //<input type="hidden" name="pro_num" id="pro_num" />
-
-      actionForm.append('<input type="hidden" name="pro_num" id="pro_num" value="' + pro_num + '" />')
-
-      actionForm.attr("method", "post");
-      actionForm.attr("action", "/admin/product/pro_delete");
-      actionForm.submit();
-
-    });
+  });
 
 
 
-
-  }); // ready 이벤트
+}); // ready 이벤트
 </script>
 </body>
 </html>

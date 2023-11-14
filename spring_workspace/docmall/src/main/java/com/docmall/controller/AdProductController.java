@@ -44,7 +44,7 @@ public class AdProductController {
 	private final AdCategoryService adCategoryService;
 
 	// 메인및썸네일 이미지업로드 폴더경로 주입작업
-	@Resource(name = "uploadPath") // servlet-context.xml 의 bean이름 참조를 해야 함.
+	@Resource(name = "uploadPath") // servlet-context.xml 의 uploadPath bean이름 참조를 해야 함.
 	private String uploadPath;
 
 	// CKEditor에서 사용되는 업로드 폴더경로
@@ -190,110 +190,107 @@ public class AdProductController {
 		return FileUtils.getFile(uploadPath + dateFolderName, fileName);
 	}
 
-
-
-	//체크 상품 목록 수정(ajax요청)
-	//일반요청으로 배엺형태로 파라미터가 전송 되어오면
-	// 방법1
+	//체크상품 목록 수정(ajax요청) 방법1
+	// 일반요청:  배열형태로 파라미터가 전송되어오면.@RequestParam("pro_num_arr")  []를 제외
 	@ResponseBody
-	@PostMapping("/pro_checked_modify1") //제네릭 문법에서는 참조타입만 가능하므로 int 가 아닌 integer이 맞다
+	@PostMapping("/pro_checked_modify1")
 	public ResponseEntity<String> pro_checked_modify1(
 			@RequestParam("pro_num_arr[]") List<Integer> pro_num_arr,
 			@RequestParam("pro_price_arr[]") List<Integer> pro_price_arr,
 			@RequestParam("pro_buy_arr[]") List<String> pro_buy_arr
 			) throws Exception {
 
-
-		//log 확인하고 다음으로 넘어가기
-		log.info("상품코드: "  + pro_num_arr);
-		log.info("상품가격: "  + pro_price_arr);
-		log.info("상품진열: "  + pro_buy_arr);
+		log.info("상품코드:" + pro_num_arr);
+		log.info("가격:" + pro_price_arr);
+		log.info("판매여부:" + pro_buy_arr);
 
 		ResponseEntity<String> entity = null;
 
+
 		//체크상품수정작업
-		adProductService.pro_checked_modify1(pro_num_arr, pro_price_arr ,pro_buy_arr);
-		entity = new ResponseEntity<String> ("success", HttpStatus.OK);
+		adProductService.pro_checked_modify1(pro_num_arr, pro_price_arr, pro_buy_arr);
+
+		entity = new ResponseEntity<String>("success", HttpStatus.OK);
+
 		return entity;
 	}
 
-
-	//방법2
+	// 방법2
 	@ResponseBody
-	@PostMapping("/pro_checked_modify2") //제네릭 문법에서는 참조타입만 가능하므로 int 가 아닌 integer이 맞다
+	@PostMapping("/pro_checked_modify2")
 	public ResponseEntity<String> pro_checked_modify2(
 			@RequestParam("pro_num_arr[]") List<Integer> pro_num_arr,
 			@RequestParam("pro_price_arr[]") List<Integer> pro_price_arr,
 			@RequestParam("pro_buy_arr[]") List<String> pro_buy_arr
 			) throws Exception {
 
+		log.info("상품코드:" + pro_num_arr);
+		log.info("가격:" + pro_price_arr);
+		log.info("판매여부:" + pro_buy_arr);
 
-		//log 확인하고 다음으로 넘어가기
-		log.info("상품코드: "  + pro_num_arr);
-		log.info("상품가격: "  + pro_price_arr);
-		log.info("상품진열: "  + pro_buy_arr);
+
 
 		ResponseEntity<String> entity = null;
 
 
-
-
 		//체크상품수정작업
-		adProductService.pro_checked_modify2(pro_num_arr,pro_price_arr ,pro_buy_arr);
-		entity = new ResponseEntity<String> ("success", HttpStatus.OK);
+		adProductService.pro_checked_modify2(pro_num_arr, pro_price_arr, pro_buy_arr);
+
+		entity = new ResponseEntity<String>("success", HttpStatus.OK);
+
 		return entity;
 	}
 
-		//상품수정 폼 페이지
+	// 상품수정 폼 페이지
 	@GetMapping("/pro_edit")
 	public void pro_edit(@ModelAttribute("cri") Criteria cri, Integer pro_num, Model model) throws Exception {
 
-
-		//선택한 상품정보
+		// 선택한 상품정보
 		ProductVO productVO = adProductService.pro_edit(pro_num);
-		//역슬래시를 슬래시로 변환하는 작업
-		//요청타겟에서 유효하지 않은 문자가 발견되었습니다 유효한 문자들은 RFC 7230 RFC3986에 정의되어 있습니다
-		productVO.setPro_up_folder(productVO.getPro_up_folder().replace("\\", "/"));
-		model.addAttribute("productVO",productVO);
+		// 역슬래시를 슬래시로 변환하는 작업.  ( \ -> / )
+		// 요청 타겟에서 유효하지 않은 문자가 발견되었습니다. 유효한 문자들은 RFC 7230과 RFC 3986에 정의되어 있습니다.
+		productVO.setPro_up_folder(productVO.getPro_up_folder().replace("\\", "/")); // Escape Sequence 특수문자.
+		model.addAttribute("productVO", productVO);
 
-		//1차카테고리 GlobalControllerAdvice 클래스 Model 참조.
+		// 1차 전체카테고리 GlobalControllerAdvice 클래스 Model 참조.
 
-		//상품카테고리에서 2차카테고리를 이용한 1차카테고리 정보를 참조.
-		//productVO.getCg_code()- 상품테이블에 있는 2차카테고리 코드
+		// 상품카테고리에서 2차카타고리를 이용한 1차카테고리 정보를 참조.
+		// productVO.getCg_code() : 상품테이블에 있는 2차카테고리 코드
 		CategoryVO firstCategory = adCategoryService.get(productVO.getCg_code());
-		model.addAttribute("first_category", firstCategory);
+		model.addAttribute("first_category",firstCategory);
 
-
-		//1차카테고리를 부모로 둔 2차카테고리 정보. 예) Top[1]
-		//현재상품의 1차카테고리 코드: firstCategory.getCg_parent_code()
-
+		// 1차카테고리를 부모로 둔 2차카테고리 정보. 예> Top(1) :
+		// 현재상품의 1차카테고리 코드 : firstCategory.getCg_parent_code()
 		model.addAttribute("second_categoryList", adCategoryService.getSecondCategoryList(firstCategory.getCg_parent_code()));
 
 
 	}
 
-
 	//상품수정
 	@PostMapping("/pro_edit")
 	public String pro_edit(Criteria cri, ProductVO vo, MultipartFile uploadFile, RedirectAttributes rttr) throws Exception {
 
-		//상품리스트에서 사용할 정보(검색, 페이징정보)
+		// 상품리스트에서 사용할 정보(검색,페이징정보)
 		log.info("검색페이징정보" + cri);
 		//상품수정내용
 		log.info("상품수정내용" + vo);
 
+		vo.setPro_up_folder(vo.getPro_up_folder().replace("/", "\\"));
+
 		//작업
-		//파일이 변경될 경우 해야 할 작업 1) 기존 이미지 파일삭제 2) 업로드 작업
-		//클라이언트 파일명을 db에 저장하는 부분
-		//첨부파일 확인할 때 조건식으로 사용 uploadFile.getSize() > 0
+		// 파일이 변경될 경우 해야 할 작업  1)기존이미지 파일삭제  2) 업로드작업
+		// 참고>클라이언트 파일명을 db에 저장하는 부분..
+		// 첨부파일 확인할 때 조건식으로 사용:  uploadFile.getSize() > 0
 		if(!uploadFile.isEmpty()) {
 
-			//1) 기존이미지 파일 삭제작업
+			//1)기존이미지파일삭제작업.
 			FileUtils.deleteFile(uploadPath, vo.getPro_up_folder(), vo.getPro_img());
-			//2) 업로드 작업
+
+			//2)업로드작업
 			String dateFolder = FileUtils.getDateFolder();
 			String savedFileName = FileUtils.uploadFile(uploadPath, dateFolder, uploadFile);
-			//3) db에 저장할 새로운 날짜 폴더명 및 이미지명 변경작업
+
+			//3)db에 저장할 새로운 날짜폴더명및이미지명 변경작업.
 			vo.setPro_img(savedFileName);
 			vo.setPro_up_folder(dateFolder);
 
@@ -310,11 +307,11 @@ public class AdProductController {
 	public String pro_delete(Criteria cri, Integer pro_num) throws Exception {
 
 
-		//db연동작업
+		// db연동 작업
 		adProductService.pro_delete(pro_num);
-
 
 		return "redirect:/admin/product/pro_list" + cri.getListLink();
 	}
+
 
 }

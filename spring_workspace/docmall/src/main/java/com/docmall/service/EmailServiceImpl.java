@@ -6,9 +6,7 @@ import javax.mail.internet.MimeMessage.RecipientType;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
 import com.docmall.dto.EmailDTO;
-
 import lombok.RequiredArgsConstructor;
 
 
@@ -24,7 +22,7 @@ public class EmailServiceImpl implements EmailService {
 	public void sendMail(EmailDTO dto, String message) {
 		// 메일구성정보를 담당하는 객체(받는사람, 보내는 사람, 받는사람 메일주소, 본문내용
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
-
+		
 		try {
 			// 받는사람의 메일주소
 			mimeMessage.addRecipient(RecipientType.TO, new InternetAddress(dto.getReceiverMail()));
@@ -34,14 +32,11 @@ public class EmailServiceImpl implements EmailService {
 			mimeMessage.setSubject(dto.getSubject(), "utf-8");
 			//본문내용
 			mimeMessage.setText(message, "utf-8");
-
+			
 			mailSender.send(mimeMessage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 	}
-
-
-
 }
