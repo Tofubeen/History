@@ -4,21 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.docmall.mapper.FindMapper">
 
+<select id="findIdCheck" parameterType="Map" resultType="com.docmall.domain.MemberVO">
 
-<select id="loginUser" parameterType="com.docmall.domain.MemberVO">
-		SELECT * FROM MBSP_TBL WHERE MBSP_ID=#{mbsp_id} AND MBSP_PASSWORD=#{mbsp_password};
-	</select>
-	
-	<select id="findId" parameterType="String" resultType="String">
-		SELECT mbsp_id FROM MBSP_TBL WHERE MBSP_NAME=#{mbsp_name} AND MBSP_PHONE=#{mbsp_phone}
-	</select>
-	
-	<select id="findPassword" parameterType="String" resultType="String">
-		SELECT mbsp_password FROM MBSP_TBL WHERE MBSP_ID=#{mbsp_id} AND MBSP_NAME=#{mbsp_name} AND MBSP_PHONE=#{mbsp_phone}
-	</select>
-	
-	<update id="updatePassword" parameterType="com.docmall.domain.MemberVO">
-		UPDATE MBSP_TBL SET MBSP_PASSWORD=#{mbsp_password} WHERE MBSP_ID=#{mbsp_id}
-	</update>
-	
+	SELECT 
+		mbsp_id 
+	FROM 
+		MBSP_TBL 
+	WHERE 
+		MBSP_NAME=#{mbsp_name} 
+	AND 
+		MBSP_EMAIL=#{mbsp_email}
+</select>
+
 	</mapper>  

@@ -251,59 +251,7 @@ public class MemberController {
 		return "redirect:" + url;
 	}
 
-	//아이디찾기
-	@GetMapping("/findId")
-	public void findId() {
 
-	}
-
-	//비밀번호 찾기 폼 페이지
-	@GetMapping("/findPw")
-	public void findPw() {
-
-	}
-
-	/*
-	//비밀번호 찾기
-	@GetMapping("/idConfirm")
-	public ResponseEntity<String> idConfirm(String mbsp_id) throws Exception {
-
-		log.info("아이디: " + mbsp_id);
-
-		ResponseEntity<String> entity = null;
-
-		//서비스 메서드 호출구문작업.
-		String idTest = "";
-		if(memberService.idConfirm(mbsp_id) != null) {
-			idTest = "yes"; // 아이디가 존재하므로, 사용 가능
-		}else {
-			idTest = "no"; // 아이디가 존재하지않으므로, 사용 불가능
-		}
-
-		entity = new ResponseEntity<String>(idUse, HttpStatus.OK);
-
-		return entity;
-	}
-
-	//회원정보저장 -> 다른주소이동(redirect)
-	@PostMapping("/join")
-	public String join(MemberVO vo, RedirectAttributes rttr) throws Exception {
-
-		log.info("회원정보: " + vo);
-
-		vo.setMbsp_password(passwordEncoder.encode(vo.getMbsp_password()));
-
-		log.info("암호화 비밀번호: " + vo.getMbsp_password());
-
-
-		//db저장
-		memberService.join(vo);
-		return "redirect:/member/login";
-	}
-
-
-
-	*/
 
 
 

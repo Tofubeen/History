@@ -5,49 +5,70 @@
 <mapper namespace="com.docmall.mapper.CartMapper">
 
 	<insert id="cart_add" parameterType="com.docmall.domain.CartVO">
-	
-	merge into 
-		cart_tbl
-	using 
-		dual
-	on 
-		(MBSP_ID = #{mbsp_id} and PRO_NUM = #{pro_num})
-	when 
-		matched then
-	update
-	        set CART_AMOUNT = CART_AMOUNT + #{cart_amount}
-	when 
-		not matched then
-	insert
-		(cart_code, pro_num, mbsp_id, cart_amount)
-	values
-		(seq_cart_code.nextval,#{pro_num},#{mbsp_id},#{cart_amount})
+		
+		merge into 
+			cart_tbl
+		using 
+			dual
+		on 
+			(MBSP_ID = #{mbsp_id} and PRO_NUM = #{pro_num})
+		when 
+			matched then
+    	update
+        	set CART_AMOUNT = CART_AMOUNT + #{cart_amount}
+		when 
+			not matched then
+    	insert
+    		(cart_code, pro_num, mbsp_id, cart_amount)
+    	values
+    		(seq_cart_code.nextval,#{pro_num},#{mbsp_id},#{cart_amount})
 	
 	
 	</insert>
 	
-	<select id="cart_list" parameterType="String" resultType="com.docmall.dto.CartDTOList">
-		
-		SELECT 
-    		c.cart_code, c.pro_num , c.cart_amount, p.pro_name, p.pro_price, p.pro_img, p.pro_discount, p.pro_up_folder
-		FROM
-    		PRODUCT_TBL P INNER JOIN CART_TBL C 
-    	ON 
-    		P.PRO_NUM = C.PRO_NUM
-		WHERE
-    		C.MBSP_ID = #{mbsp_id}
+	<select id="cart_list" resultType="com.docmall.dto.CartDTOList">
+	
+		SELECT  
+			C.CART_CODE, C.PRO_NUM,C.CART_AMOUNT, P.PRO_NAME, P.PRO_PRICE, P.PRO_IMG, P.PRO_DISCOUNT, P.PRO_UP_FOLDER 
+		FROM 
+			PRODUCT_TBL P INNER JOIN CART_TBL C 
+		ON 
+			P.PRO_NUM = C.PRO_NUM
+		WHERE 
+			C.MBSP_ID = #{mbsp_id}
 	
 	</select>
 	
-	<update id="cart_amount_change" parameterType="Map">
+	<update id="cart_amount_change" parameterType="map">
 	
 		UPDATE 
 			CART_TBL
 		SET
-			cart_amount = #{cart_amount}
+			CART_AMOUNT = #{cart_amount}
 		WHERE
 			CART_CODE = #{cart_code}
+	
 	</update>
 	
+	<delete id="cart_list_del" parameterType="Long">
+	
+		DELETE FROM
+			CART_TBL
+		WHERE
+			CART_CODE = #{cart_code}			
+	
+	</delete>
+	
+		<delete id="cart_sel_delete">
+	<!--  파라미터로 List컬렉션이 사용될 경우에는 mybatis 구문에서는 collection="list" 사용해야 함. -->
+		DELETE FROM 
+			CART_TBL
+		WHERE
+			CART_CODE IN
+			<foreach collection="list" item="cart_code" open="(" close=")" separator=",">
+				#{cart_code}
+			</foreach>
+	
+	</delete>
 
 </mapper>  
