@@ -8,57 +8,94 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.docmall.domain.MemberVO;
+import com.docmall.domain.OrderDetailVO;
+import com.docmall.domain.OrderVO;
+import com.docmall.domain.PaymentVO;
 import com.docmall.dto.CartDTOList;
+import com.docmall.kakaopay.ReadyResponse;
 import com.docmall.service.CartService;
 import com.docmall.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@Log4j
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/user/order/*")
+@Log4j
 public class OrderController {
-	
+
 	private final CartService cartService;
-	
 	private final OrderService orderService;
-	
-	
-	
-	//주문정보페이지
+
+	// 주문 정보 페이지 이동
 	@GetMapping("/order_info")
 	public void order_info(HttpSession session, Model model) throws Exception {
-		
-		// 주문정보
+
+		log.info("주문 정보 페이지 진입");
+
+		// 주문 정보
 		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
-		
+
+
+		// [참고] UserProductController의 @GetMapping("/pro_list")
 		List<CartDTOList> order_info = cartService.cart_list(mbsp_id);
-		
+
 		double order_price = 0;
-		
-//		cart_list.forEach(vo -> {
-//			vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
-//			
-//			// // 금액 = (판매가 - (판매가 * 할인율)) * 수량
-//			//cart_total_price += ((double)vo.getPro_price() - (vo.getPro_price() * vo.getPro_discount() * 1/100 )) * (double) vo.getCart_amount();
-//		});
-		
-		for(int i=0; i<order_info.size(); i++) {
-			CartDTOList vo = order_info.get(i);
-			
+
+		// 날짜 폴더의 '\'를 '/'로 바꾸는 작업(이유: '\'로 되어 있는 정보가 스프링으로 보내는 요청 데이터에 사용되면 에러 발생)
+		// 스프링에서 처리 안하면 자바스크립트에서 처리할 수도 있다.
+		/*
+		cart_list.forEach(vo -> {
 			vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
-			
-//			vo.setPro_discount(vo.getPro_discount() * 1/100);
-			order_price += ((double)vo.getPro_price() - (vo.getPro_price() * vo.getPro_discount() * 1/100 )) * (double) vo.getCart_amount();
+
+			// 금액 = (판매가 - (판매가 * 할인율)) * 수량
+			cart_total_price += (double) (vo.getPro_price() - (vo.getPro_price() * vo.getPro_discount() * 1/100)) * vo.getCart_amount();
+		});
+		*/
+
+		// 위 코드는 컴파일 에러 발생해서 다음 코드로 대체함
+		for (int i = 0; i < order_info.size(); i++) {
+			CartDTOList vo = order_info.get(i);
+
+			vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
+			// vo.setPro_discount(vo.getPro_discount() * 1/100);
+
+			order_price += (double) (vo.getPro_price() - (vo.getPro_price() * vo.getPro_discount() * 1/100)) * vo.getCart_amount();
 		}
-		
-		
+
 		model.addAttribute("order_info", order_info);
 		model.addAttribute("order_price", order_price);
 	}
 
+	// 카카오페이 결제 선택을 진행했을 경우 주문 정보, 주문 상세 정보, 결제 정보가 한꺼번에 들어옴(여기서 부터 결제시작)
+	//orderInfo에서 결제하기를 누르면 여기로 온다
+	@GetMapping(value = "/orderPay", produces = "application/json")
+	public @ResponseBody ReadyResponse payReady(OrderVO o_vo, OrderDetailVO od_vo, PaymentVO p_vo,
+											   int totalamount, HttpSession session) throws Exception {
+
+
+
+		return null;
+	}
+
+
+	//결제성공시 http://localhost9090/user/order/orderApproval
+	@GetMapping("/orderApproval")
+	public void orderApproval() {
+
+	}
+	//결제취소시 http://localhost9090/user/order/orderCancel
+	@GetMapping("/orderCancel")
+	public void orderCancel() {
+
+	}
+	//결제실패시 http://localhost9090/user/order/orderFail
+	@GetMapping("/orderFail")
+	public void orderFail() {
+
+	}
 }

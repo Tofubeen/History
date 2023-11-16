@@ -6,37 +6,41 @@ import javax.mail.internet.MimeMessage.RecipientType;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
 import com.docmall.dto.EmailDTO;
+
 import lombok.RequiredArgsConstructor;
 
-
-// 현재는 mapper인터페이스를 참조 안함.
-@RequiredArgsConstructor
+// 현재는 mapper 인터페이스를 참조하지 않음
 @Service
+@RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
 
-	//주입. email-config.xml파일의 bean으로 주입.
+	// 주입 작업: email-config.xml 파일의 bean으로 주입
+	// <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	private final JavaMailSender mailSender;
 
 	@Override
 	public void sendMail(EmailDTO dto, String message) {
-		// 메일구성정보를 담당하는 객체(받는사람, 보내는 사람, 받는사람 메일주소, 본문내용
+		// 메일 구성정보를 담당하는 객체(받는 사람, 보내는 사람, 받는 사람의 메일 주소, 본문 내용 등)
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
-		
+
 		try {
-			// 받는사람의 메일주소
+			// 받는 사람의 메일 주소
 			mimeMessage.addRecipient(RecipientType.TO, new InternetAddress(dto.getReceiverMail()));
 			// 보내는 사람(메일, 이름)
-			mimeMessage.addFrom(new InternetAddress[] {new InternetAddress(dto.getSenderMail(), dto.getSenderName())});
-			//메일제목
+			mimeMessage.addFrom(new InternetAddress[] { new InternetAddress(dto.getSenderMail(), dto.getSenderName()) });
+			// 메일 제목
 			mimeMessage.setSubject(dto.getSubject(), "utf-8");
-			//본문내용
+			// 본문 내용
 			mimeMessage.setText(message, "utf-8");
 			
 			mailSender.send(mimeMessage);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
+
 }

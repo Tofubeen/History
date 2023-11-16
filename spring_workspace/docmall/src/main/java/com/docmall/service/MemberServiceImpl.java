@@ -7,51 +7,55 @@ import com.docmall.mapper.MemberMapper;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-	//자동주입
-	// @RequiredArgsConstructor : memberMapper필드를 매개변수로 하는 생성자메서드가 생성
+
+	// 자동 주입 ─ @RequiredArgsConstructor
+	// memberMapper 필드를 매개변수로 하는 생성자 메서드가 생성
 	private final MemberMapper memberMapper;
+
+	// @RequiredArgsConstructor와 private final~은 아래와 동일함
 	/*
-	private MemberServiceImpl(MemberMapper memberMapper) {
+	public MemberServiceImpl(MemberMapper memberMapper) {
 		this.memberMapper = memberMapper;
 	}
 	*/
-
+	
 	@Override
 	public String idCheck(String mbsp_id) {
-		// TODO Auto-generated method stub
+	
 		return memberMapper.idCheck(mbsp_id);
 	}
 
 	@Override
 	public void join(MemberVO vo) {
-		// TODO Auto-generated method stub
+
 		memberMapper.join(vo);
 	}
 
 	@Override
 	public MemberVO login(String mbsp_id) {
-		// TODO Auto-generated method stub
+
 		return memberMapper.login(mbsp_id);
 	}
 
 	@Override
 	public void modify(MemberVO vo) {
-		// TODO Auto-generated method stub
+		
 		memberMapper.modify(vo);
 	}
 
 	@Override
 	public void loginTimeUpdate(String mbsp_id) {
-		// TODO Auto-generated method stub
+
 		memberMapper.loginTimeUpdate(mbsp_id);
 	}
 
 	@Override
 	public void delete(String mbsp_id) {
-		// TODO Auto-generated method stub
+		
 		memberMapper.delete(mbsp_id);
 	}
+
 }

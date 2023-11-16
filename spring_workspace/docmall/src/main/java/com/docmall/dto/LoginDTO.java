@@ -9,6 +9,5 @@ import lombok.ToString;
 @ToString
 public class LoginDTO {
 
-	private String mbsp_id;
-	private String mbsp_password;
+	private String mbsp_id, mbsp_password;
 }

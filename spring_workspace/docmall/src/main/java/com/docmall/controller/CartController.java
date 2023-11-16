@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.docmall.domain.CartVO;
@@ -24,103 +25,115 @@ import com.docmall.util.FileUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@Log4j
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/user/cart/*")
-@Controller
+@Log4j
 public class CartController {
 
 	private final CartService cartService;
-	
-	// 메인및썸네일 이미지업로드 폴더경로 주입작업
-	@Resource(name = "uploadPath") // servlet-context.xml 의 uploadPath bean이름 참조를 해야 함.
+
+	// 메인 및 썸네일 이미지 업로드 폴더 경로 주입 작업
+	// servlet-context.xml의 beans 참조 -> <beans:bean id="uploadPath"
+	// class="java.lang.String">
+	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
-//	@ResponseBody
+
+	// [Oracle] 오라클 MERGE INTO 사용법 & 노하우 정리: https://gent.tistory.com/406 \
+
 	@PostMapping("/cart_add")
+	// @ResponseBody // 기능상 중복되긴 하지만, 명시적 전달을 위함(작성한다고 해서 문제가 되지 않는 어노테이션)
 	public ResponseEntity<String> cart_add(CartVO vo, HttpSession session) throws Exception {
-		
+
 		ResponseEntity<String> entity = null;
-		
-		// ajax방식에서 상품코드,수량 2개정보만 전송되어옴. (로그인한 사용자의 아이디정보추가작업)
+
+		// 서버 ─ 로그인한 사용자의 아이디 정보 추가 작업
+		// 클라이언트 ─ AJAX 방식으로 상품코드, 상품수량 2개 정보만 전송 -> data: {pro_num:
+		// $(this).data("pro_num"), cart_amount: 1}
+		// Object javax.servlet.http.HttpSession.getAttribute(String name)
 		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
 		vo.setMbsp_id(mbsp_id);
-		
+
 		cartService.cart_add(vo);
-		
+
 		entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		
+
 		return entity;
 	}
-	
-	//장바구니 목록
-	@GetMapping("/cart_list") 
+
+	// 장바구니 목록
+	@GetMapping("/cart_list")
 	public void cart_list(HttpSession session, Model model) throws Exception {
-		
+
 		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
+
 		
+		// [참고] UserProductController의 @GetMapping("/pro_list")
 		List<CartDTOList> cart_list = cartService.cart_list(mbsp_id);
 		
 		double cart_total_price = 0;
+
+		// 날짜 폴더의 '\'를 '/'로 바꾸는 작업(이유: '\'로 되어 있는 정보가 스프링으로 보내는 요청 데이터에 사용되면 에러 발생)
+		// 스프링에서 처리 안하면 자바스크립트에서 처리할 수도 있다.
+		/*
+		cart_list.forEach(vo -> {
+			vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
+			
+			// 금액 = (판매가 - (판매가 * 할인율)) * 수량
+			cart_total_price += (double) (vo.getPro_price() - (vo.getPro_price() * vo.getPro_discount() * 1/100)) * vo.getCart_amount();
+		});
+		*/
 		
-//		cart_list.forEach(vo -> {
-//			vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
-//			
-//			// // 금액 = (판매가 - (판매가 * 할인율)) * 수량
-//			//cart_total_price += ((double)vo.getPro_price() - (vo.getPro_price() * vo.getPro_discount() * 1/100 )) * (double) vo.getCart_amount();
-//		});
-		
-		for(int i=0; i<cart_list.size(); i++) {
+		// 위 코드는 컴파일 에러 발생해서 다음 코드로 대체함
+		for (int i = 0; i < cart_list.size(); i++) {
 			CartDTOList vo = cart_list.get(i);
 			
 			vo.setPro_up_folder(vo.getPro_up_folder().replace("\\", "/"));
+			// vo.setPro_discount(vo.getPro_discount() * 1/100);
 			
-//			vo.setPro_discount(vo.getPro_discount() * 1/100);
-			cart_total_price += ((double)vo.getPro_price() - (vo.getPro_price() * vo.getPro_discount() * 1/100 )) * (double) vo.getCart_amount();
+			cart_total_price += (double) (vo.getPro_price() - (vo.getPro_price() * vo.getPro_discount() * 1/100)) * vo.getCart_amount();
 		}
-		
 		
 		model.addAttribute("cart_list", cart_list);
 		model.addAttribute("cart_total_price", cart_total_price);
-		
+
 	}
-	
-	//장바구니 이미지
-	//상품리스트에서 보여줄 이미지.  <img src="매핑주소">
+
+	// 장바구니 이미지
+	// 상품 리스트에서 보여줄 이미지. <img src="매핑주소">
 	@ResponseBody
 	@GetMapping("/imageDisplay") // /user/product/imageDisplay?dateFolderName=값1&fileName=값2
 	public ResponseEntity<byte[]> imageDisplay(String dateFolderName, String fileName) throws Exception {
-		
+
 		return FileUtils.getFile(uploadPath + dateFolderName, fileName);
 	}
 	
-	//장바구니 수량변경
+	// 장바구니 수량 변경
 	@PostMapping("/cart_amount_change")
 	public ResponseEntity<String> cart_amount_change(Long cart_code, int cart_amount) throws Exception {
 		ResponseEntity<String> entity = null;
 		
 		cartService.cart_amount_change(cart_code, cart_amount);
-		
+
 		entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		return entity;
 	}
 	
-	//장바구니 목록에서 개별삭제(ajax용)
+	// 장바구니 목록에서 개별 삭제(AJAX용)
 	@PostMapping("/cart_list_del")
 	public ResponseEntity<String> cart_list_del(Long cart_code) throws Exception {
 		ResponseEntity<String> entity = null;
-		
+				
 		cartService.cart_list_del(cart_code);
 		
 		entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		return entity;
-	
 	}
 	
-	//장바구니 목록에서 개별삭제(non-ajax용)
+	// 장바구니 목록에서 개별 삭제(Non-AJAX용)
 	@GetMapping("/cart_list_del")
 	public String cart_list_del2(Long cart_code) throws Exception {
-		
+	
 		cartService.cart_list_del(cart_code);
 		
 		return "redirect:/user/cart/cart_list";
@@ -129,6 +142,7 @@ public class CartController {
 	//장바구니 선택삭제
 	@PostMapping("/cart_sel_delete")
 	public ResponseEntity<String> cart_sel_delete(@RequestParam("cart_code_arr[]") List<Long> cart_code_arr) {
+		
 		ResponseEntity<String> entity = null;
 		
 		//방법1. 하나씩 반복적으로 삭제.

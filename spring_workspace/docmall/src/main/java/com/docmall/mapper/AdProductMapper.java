@@ -4,36 +4,36 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.docmall.domain.CategoryVO;
 import com.docmall.domain.ProductVO;
 import com.docmall.dto.Criteria;
 import com.docmall.dto.ProductDTO;
 
 public interface AdProductMapper {
 
+	// 상품 등록
 	void pro_insert(ProductVO vo);
 	
 	List<ProductVO> pro_list(Criteria cri);
 	
 	int getTotalCount(Criteria cri);
 	
-	// 파라미터가 2개이상 사용되는 경우 @Param 어노테이션 필수.
-	// 방법1.
+	// [방법 1]
+	// @Param(""): 파라미터가 2개 이상 사용되는 경우 해당 어노테이션 필수(Mapper에서만 쓰임)
 	void pro_checked_modify1(
-				@Param("pro_num") Integer pro_num,
-				@Param("pro_price") Integer pro_price,
-				@Param("pro_buy") String pro_buy
+			@Param("pro_num") Integer pro_num, // @Param("A") Integer pro_num -> #{A} 
+			@Param("pro_price") Integer pro_price,
+			@Param("pro_buy") String pro_buy			
 	);
 	
-	// 방법2.
+	// [방법 2]
 	void pro_checked_modify2(List<ProductDTO> pro_modify_list);
 	
 	ProductVO pro_edit(Integer pro_num);
 	
-	//상품수정
+	// 상품 수정
 	void pro_edit_ok(ProductVO vo);
 	
-	//상품삭제
+	// 상품 삭제
 	void pro_delete(Integer pro_num);
-	
-	
 }

@@ -4,10 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.docmall.mapper.FindMapper">
 
-<select id="findIdCheck" parameterType="Map" resultType="com.docmall.domain.MemberVO">
+<select id="findIdCheck" parameterType="String" resultType="com.docmall.domain.MemberVO">
 
 	SELECT 
-		mbsp_id 
+		mbsp_id,
+		mbsp_name,
+		mbsp_email
 	FROM 
 		MBSP_TBL 
 	WHERE 

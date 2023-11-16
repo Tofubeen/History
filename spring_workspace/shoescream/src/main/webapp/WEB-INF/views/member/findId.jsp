@@ -68,7 +68,7 @@
       </div>
       
       <div class="box-footer">
-      <button type="button" class="btn btn-primary" id="findIdCheck">아이디 확인</button>
+      <button type="button" class="btn btn-primary" id="btnidcheck">아이디 확인</button>
       </div>
       </form>
       </div>
@@ -84,44 +84,29 @@
     
     let useIDCheck = false; // 아이디 중복체크 사용유무 확인
     
-    // document.getElementById("idCheck");
-    $("#findIdCheck").click(function() {
-      if($("#mbsp_name").val() == "") {
-        alert("이름을 입력하세요.");
-        $("#mbsp_name").focus();
-        return;
-      }
-      $("#findIdCheck").click(function() {    
-      if($("#mbsp_email").val() == "") {
-        alert("이메일을 입력하세요.");
-        $("#mbsp_email").focus();
-        return;
-      }
-      
-    });
       //인증확인 요청
-      $.ajax({
-        url: '/member/findIdCheck',
-        type: 'get',
-        dataType: 'text',
-        data : {authCode : $("#authCode").val()},
-        success: function(result) {
-          if(result == "success") {
-            alert("인증 성공");
-            isConfirmAuth = true;
-          }else if(result == "fail") {
-            alert("인증코드가 틀립니다. 확인바랍니다.");
-            $("#authCode").val("");
-            isConfirmAuth = false;
-          }else if(result == "request") {
-            alert("메일인증 요청을 다시 해주세요");
-            $("#authCode").val("");
-            isConfirmAuth = false;
-          }
-        }
-      });
-
-    });
+      // $.ajax({
+      //   url: '/member/findIdCheck',
+      //   type: 'get',
+      //   dataType: 'text',
+      //   data : {authCode : $("#authCode").val()},
+      //   success: function(result) {
+      //     if(result == "success") {
+      //       alert("인증 성공");
+      //       isConfirmAuth = true;
+      //     }else if(result == "fail") {
+      //       alert("인증코드가 틀립니다. 확인바랍니다.");
+      //       $("#authCode").val("");
+      //       isConfirmAuth = false;
+      //     }else if(result == "request") {
+      //       alert("메일인증 요청을 다시 해주세요");
+      //       $("#authCode").val("");
+      //       isConfirmAuth = false;
+      //     }
+      //   }
+      // });
+  });
+  $(#btnidcheck).click
     // 회원가입버튼
     $("#btnJoin").click(function() {
       // 회원가입 유효성검사
@@ -131,4 +116,3 @@
 </script>
   </body>
 </html>
-    

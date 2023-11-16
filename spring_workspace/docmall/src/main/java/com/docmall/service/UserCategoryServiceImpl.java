@@ -10,16 +10,19 @@ import com.docmall.mapper.UserCategoryMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@Log4j
+// Bean의 생성 및 등록을 위한 설정 작업
+// 1. @Service: UserCategoryServiceImpl Bean 생성
+// 2. root-context.xml의 <context:component-scan base-package="com.docmall.service" />
+@Service 
 @RequiredArgsConstructor
-@Service // bean이 생성및등록될 설정작업 :  userCategoryServiceImpl bean 생성. root-context.xml에서 <context:component-scan base-package="com.docmall.service" />
+@Log4j
 public class UserCategoryServiceImpl implements UserCategoryService {
-	
-	private final UserCategoryMapper userCategoryMapper; // 주입을 정상적으로 받는다는 전제조건
-	
+
+	private final UserCategoryMapper userCategoryMapper;
+
 	@Override
 	public List<CategoryVO> getSecondCategoryList(Integer cg_parent_code) {
-		// TODO Auto-generated method stub
+		
 		return userCategoryMapper.getSecondCategoryList(cg_parent_code);
 	}
 
