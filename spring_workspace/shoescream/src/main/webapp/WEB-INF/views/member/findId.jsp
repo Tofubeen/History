@@ -68,7 +68,7 @@
       </div>
       
       <div class="box-footer">
-      <button type="button" class="btn btn-primary" id="btnidcheck">아이디 확인</button>
+      <button type="button" class="btn btn-primary" id="btnIdCheck">아이디 확인</button>
       </div>
       </form>
       </div>
@@ -81,38 +81,42 @@
   
 <script>                                                   
   $(document).ready(function() {
-    
-    let useIDCheck = false; // 아이디 중복체크 사용유무 확인
-    
-      //인증확인 요청
-      // $.ajax({
-      //   url: '/member/findIdCheck',
-      //   type: 'get',
-      //   dataType: 'text',
-      //   data : {authCode : $("#authCode").val()},
-      //   success: function(result) {
-      //     if(result == "success") {
-      //       alert("인증 성공");
-      //       isConfirmAuth = true;
-      //     }else if(result == "fail") {
-      //       alert("인증코드가 틀립니다. 확인바랍니다.");
-      //       $("#authCode").val("");
-      //       isConfirmAuth = false;
-      //     }else if(result == "request") {
-      //       alert("메일인증 요청을 다시 해주세요");
-      //       $("#authCode").val("");
-      //       isConfirmAuth = false;
-      //     }
-      //   }
-      // });
+  
+      $("#btnIdCheck").click(function() {
+        console.log("아이디:" );
+        if($("#mbsp_name").val() == "" || $("#mbsp_email").val() == "" ) {
+          alert("이름 혹은 이메일 항목을 확인 해주세요.")
+          return;
+        }
+
+              // 아이디 중복체크
+      $.ajax({
+        url : '/member/findIdCheck',
+        type: 'get',
+        dataType: 'text',
+        data: {mbsp_name : $("#mbsp_name").val(),
+              mbsp_email : $("#mbsp_email").val()
+        },
+        success: function(result) {
+          if(result == "yes") {
+            alert("아이디 사용가능");
+          }else {
+            alert("아이디 사용불가능");
+            $("#mbsp_id").val(""); // 아이디 텍스트박스를 값을 지움
+            $("#mbsp_id").focus(); // 포커스
+          }
+        }
+      });
+
+        
+        });
+
+
+
+
+
+
   });
-  $(#btnidcheck).click
-    // 회원가입버튼
-    $("#btnJoin").click(function() {
-      // 회원가입 유효성검사
-      // 폼 전송작업
-      joinForm.submit();
-    });
 </script>
   </body>
 </html>
