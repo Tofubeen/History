@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.docmall.domain.CartVO;
 import com.docmall.domain.MemberVO;
 import com.docmall.domain.OrderVO;
 import com.docmall.domain.PaymentVO;
@@ -76,6 +77,25 @@ public class OrderController {
 		model.addAttribute("order_price", order_price);
 	}
 
+
+	//상품상세에서 주문하기
+	@GetMapping("/order_ready")
+	public String order_ready(CartVO vo , HttpSession session) throws Exception {
+
+
+		log.info("상세주문하기: " + vo);
+
+		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
+		vo.setMbsp_id(mbsp_id);
+
+		cartService.cart_add(vo);
+
+		return "redirect:/user/order/order_info"; //주문정보페이지
+	};
+
+
+
+
 	// 주문 정보 페이지에서 카카오페이 결제 선택을 진행한 경우: 주문 정보, 주문 상세 정보, 결제 정보가 한꺼번에 들어옴
 	// 결제 선택 ─ 카카오 페이
 	// 1) 결제 준비 요청
@@ -100,14 +120,20 @@ public class OrderController {
 		Long ord_code = (long) orderService.getOrderSeq();
 		o_vo.setOrd_code(ord_code); // 주문번호 저장
 
-		log.info("결제방법: " + paymethod);
-		log.info("주문정보: " + o_vo);
-
 		// 1) 주문 테이블 저장 작업: ord_status, payment_status 데이터 준비할 것(우선은 누락시킴)
 		// 2) 주문 상세 테이블 저장 작업
 
+		p_vo.setOrd_code(ord_code);
+		p_vo.setMbsp_id(mbsp_id);
+		p_vo.setPay_method("카카오페이");
+		p_vo.setPay_tot_price(totalprice);
+
 		o_vo.setOrd_status("주문완료");
 		o_vo.setPayment_status("결제완료");
+
+		log.info("결제방법: " + paymethod);
+		log.info("주문정보: " + o_vo);
+		log.info("결제정보: " + p_vo);
 
 		List<CartDTOList> cart_list = cartService.cart_list(mbsp_id);
 		String itemName = cart_list.get(0).getPro_name() + "외 " + String.valueOf(cart_list.size() - 1) + "건";
@@ -171,21 +197,21 @@ public class OrderController {
 		Long ord_code = (long) orderService.getOrderSeq();
 		o_vo.setOrd_code(ord_code); // 주문번호 저장
 
-		log.info("결제방법: " + paymethod);
-		log.info("주문정보: " + o_vo);
-		log.info("결제정보: " + p_vo);
-
 		// 1) 주문 테이블 저장 작업: ord_status, payment_status 데이터 준비할 것(우선은 누락시킴)
 		// 2) 주문 상세 테이블 저장 작업
 
 		o_vo.setOrd_status("주문완료");
 		o_vo.setPayment_status("결제완료");
 
-		 p_vo.setPay_method("무통장입금");
-		 p_vo.setOrd_code(ord_code);
-		 p_vo.setMbsp_id(mbsp_id);
-		 p_vo.setPay_tot_price(totalprice);
-		 p_vo.setPay_nobank_price(totalprice);
+		p_vo.setPay_method("무통장입금");
+		p_vo.setOrd_code(ord_code);
+		p_vo.setMbsp_id(mbsp_id);
+		p_vo.setPay_tot_price(totalprice);
+		p_vo.setPay_nobank_price(totalprice);
+
+		log.info("결제방법: " + paymethod);
+		log.info("주문정보: " + o_vo);
+		log.info("결제정보: " + p_vo);
 
 		orderService.order_insert(o_vo, p_vo); // 주문, 주문상세 정보 저장, 장바구니 삭제, 결제 정보 저장
 

@@ -49,11 +49,11 @@
 								<c:forEach items="${pro_list}" var="productVO">
 									<div class="col-md-3">
 										<div class="card mb-4 shadow-sm">
-											<img width="100%" height="200"
+											<img class="btn_pro_img" data-pro_num="${productVO.pro_num}" width="100%" height="200"
 												src="/user/cart/imageDisplay?dateFolderName=${productVO.pro_up_folder}&fileName=${productVO.pro_img}"
 												alt="">
 											<div class="card-body">
-												<p class="card-text">${productVO.pro_name}</p>
+												<p class="card-text btn_pro_img" data-pro_num="${productVO.pro_num}">${productVO.pro_name}</p>
 												<div class="d-flex justify-content-between align-items-center">
 													<div class="btn-group">
 														<!-- data-변수명="" -> HTML5 속성으로 JS 처리를 위해 상품코드를 숨겨둠 -->
@@ -159,7 +159,22 @@
 												}
 											});
 										});
-									});
+
+										// 상품 이미지 또는 상품명 클릭 시 상세로 보내는 작업
+										$(".btn_pro_img").on("click", function() {
+											console.log("상품 상세 설명");
+
+											// actionForm.attr("action", "상품 상세 주소");
+											actionForm.attr("action", "/user/product/pro_detail");
+											let pro_num = $(this).data("pro_num");
+
+											actionForm.find("input[name='pro_num']").remove(); // 뒤로가기 시 URL 내용 지우기
+											// <input type='hidden' name='pro_num' value='상품코드'> 미리 만들어서 작성
+											actionForm.append("<input type='hidden' name='pro_num' value='" + pro_num + "'>")
+											actionForm.submit();
+										});
+
+									}); // ready event end
 								</script>
 			</body>
 

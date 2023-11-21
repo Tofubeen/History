@@ -1,7 +1,6 @@
 /*
-*/
 
-commit;
+*/
 DROP TABLE MBSP_TBL;
 
 -- 한글 데이터 크기?
@@ -9,21 +8,21 @@ SELECT LENGTHB('홍') FROM DUAL;
 
 --1.회원가입 테이블
 CREATE TABLE MBSP_TBL(
-        mbsp_id             VARCHAR2(15),
-        mbsp_name           VARCHAR2(30)            NOT NULL,
-        mbsp_email          VARCHAR2(50)            NOT NULL,
-        mbsp_password       CHAR(60)               NOT NULL,        -- 비밀번호 암호화 처리
-        mbsp_zipcode        CHAR(5)                 NOT NULL,
-        mbsp_addr           VARCHAR2(100)            NOT NULL,
-        mbsp_deaddr         VARCHAR2(100)            NOT NULL,
-        mbsp_phone          VARCHAR2(15)            NOT NULL,
-        mbsp_point          NUMBER DEFAULT 0        NOT NULL,
-        mbsp_lastlogin      DATE DEFAULT sysdate    NOT NULL,
-        mbsp_datesub        DATE DEFAULT sysdate    NOT NULL,
-        mbsp_updatedate     DATE DEFAULT sysdate    NOT NULL
+        MBSP_ID             VARCHAR2(15),
+        MBSP_NAME           VARCHAR2(30)            NOT NULL,
+        MBSP_EMAIL          VARCHAR2(50)            NOT NULL,
+        MBSP_PASSWORD       CHAR(60)               NOT NULL,        -- 비밀번호 암호화 처리.
+        MBSP_ZIPCODE        CHAR(5)                 NOT NULL,
+        MBSP_ADDR           VARCHAR2(100)            NOT NULL,
+        MBSP_DEADDR         VARCHAR2(100)            NOT NULL,
+        MBSP_PHONE          VARCHAR2(15)            NOT NULL,
+        MBSP_POINT          NUMBER DEFAULT 0        NOT NULL,
+        MBSP_LASTLOGIN      DATE DEFAULT SYSDATE    NOT NULL,
+        MBSP_DATESUB        DATE DEFAULT SYSDATE    NOT NULL,
+        MBSP_UPDATEDATE     DATE DEFAULT SYSDATE    NOT NULL
 );
 
---실행(PK 설정)
+--실행
 ALTER TABLE MBSP_TBL
 ADD CONSTRAINT PK_MBSP_ID PRIMARY KEY (MBSP_ID);
 
@@ -95,147 +94,144 @@ SELECT MBSP_PASSWORD FROM MBSP_TBL WHERE MBSP_ID = ?;
 --2.카테고리 테이블
 
 DROP TABLE CATEGORY_TBL;
-CREATE TABLE category_tbl(
-        cg_code            NUMBER    PRIMARY KEY,    -- 카테고리 코드
-        cg_parent_code         NUMBER    NULL,           -- 상위카테고리 코드
-        cg_name            VARCHAR2(50)    NOT NULL,
-        FOREIGN KEY(cg_parent_code) REFERENCES category_tbl(cg_code)
+CREATE TABLE CATEGORY_TBL(
+        CG_CODE            NUMBER    PRIMARY KEY,    -- 카테고리 코드
+        CG_PARENT_CODE         NUMBER    NULL,           -- 상위카테고리 코드
+        CG_NAME            VARCHAR2(50)    NOT NULL,
+        FOREIGN KEY(CG_PARENT_CODE) REFERENCES CATEGORY_TBL(CG_CODE)
 );
 
--- cg_code, cg_parent_code, cg_name
+cg_code, cg_parent_code, cg_name
 
 -- / -> /
 
 -- 1차 카테고리 : TOP(1) PANTS(2) SHIRTS(3) OUTER(4) SHOES(5) BAG(6) ACC(7)
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (1,NULL,'TOP');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (2,NULL,'PANTS');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (3,NULL,'SHIRTS');    
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (4,NULL,'OUTER');        
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (5,NULL,'SHOES');    
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (6,NULL,'BAG');    
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (7,NULL,'ACC');    
 
 -- 1차카테고리 TOP : 1
 -- 2차 카테고리 : 긴팔티 니트 맨투맨/후드티 프린팅티 나시 반팔티/7부티
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (8,1,'긴팔티');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
 VALUES (9,1,'니트');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
-VALUES (10,1,'맨투맨&#38;후드티'); -- &#38;: entity
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
+VALUES (10,1,'맨투맨&#38;후드티');
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
 VALUES (11,1,'프린팅티');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
 VALUES (12,1,'나시');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
 VALUES (13,1,'반팔티&#38;7부티');
 
 -- 1차카테고리 PANTS : 2
 -- 2차카테고리 : 밴딩팬츠 청바지 슬랙스 면바지 반바지
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (14,2,'밴딩팬츠');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (15,2,'청바지');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME) 
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (16,2,'슬랙스');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (17,2,'면바지');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (18,2,'반바지');
     
 -- 1차카테고리 SHIRTS : 3
 -- 2차카테고리 : 헨리넥/차이나 베이직 체크/패턴 청남방 스트라이프 
 
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (19,3,'헨리넥&#38;차이나');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (20,3,'베이직');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (21,3,'체크&#38;패턴');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (22,3,'청남방');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (23,3,'스트라이프'); 
     
     
 -- 1차카테고리 OUTER : 4
 -- 2차카테고리 : 패딩 코트 수트/블레이져 자켓 블루종/MA-1 가디건/조끼 후드/집업
 
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (24,4,'패딩');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (25,4,'코트');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (26,4,'수트&#38;블레이져');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (27,4,'자켓');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (28,4,'블루종&#38;MA-1');     
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (29,4,'가디건&#38;조끼');     
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (30,4,'후드&#38;집업');  
     
 -- 1차카테고리 SHOES : 5
 -- 2차카테고리 : 스니커즈 로퍼/구두 키높이신발/깔창 슬리퍼/쪼리/샌들
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (31,5,'스니커즈');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (32,5,'로퍼&#38;구두');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (33,5,'키높이신발&#38;깔창');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (34,5,'슬리퍼&#38;쪼리/샌들');
    
 -- 1차카테고리 BAG : 6
 -- 2차카테고리 : 백팩 토트/숄더백 크로스백 클러치
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (35,6,'백팩'); 
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (36,6,'토트/숄더백');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME)
     VALUES (37,6,'크로스백');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (38,6,'클러치');    
-    
 -- 1차카테고리 ACC : 7
 -- 2차카테고리 : 양말/넥타이 모자 머플러/장갑 아이웨어 벨트/시계 기타
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (39,7,'양말/넥타이');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (40,7,'모자');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (41,7,'머플러&#38;장갑');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (42,7,'아이웨어');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME)
     VALUES (43,7,'벨트&#38;시계');
-INSERT INTO category_tbl (CG_CODE, CG_PARENT_CODE, CG_NAME)
+INSERT INTO category_tbl (CG_CODE,CG_PARENT_CODE,CG_NAME) 
     VALUES (44,7,'기타');
 
-commit; -- 스프링에서 확인 안 됨
+commit; -- 스프링에서 확인 안됨.
+    
 
--- 전체 카테고리 출력    
-SELECT * FROM category_tbl;
+-- 1차카테고리 출력
+SELECT cat_code,cat_prtcode,cat_name FROM category_tbl WHERE cat_prtcode IS NULL;
 
--- 1차 카테고리 전부 출력
-SELECT CG_CODE, CG_PARENT_CODE, CG_NAME FROM CATEGORY_TBL WHERE CG_PARENT_CODE IS NULL;
+-- 1차카테고리 TOP 의 2차카테고리 출력.
+SELECT * FROM category_tbl WHERE cat_prtcode = 1;
 
--- 1차 카테고리 TOP의 2차 카테고리 출력.
-SELECT cg_code, cg_parent_code, cg_name FROM category_tbl WHERE cg_parent_code = 1;
 
--- 2차 카테고리 8의 부모(1차 카테고리 정보)
-SELECT * FROM category_tbl where cg_code = 8;
+-- 2차카테고리 전부 출력하라.
+SELECT * FROM category_tbl WHERE cat_prtcode IS NOT NULL;
 
--- 2차 카테고리 전부 출력하라.
-SELECT * FROM category_tbl WHERE cg_parent_code IS NOT NULL;
+
 
 SELECT * FROM category_tbl;
 COMMIT;
@@ -254,40 +250,19 @@ DROP TABLE PRODUCT_TBL;
     NULL -> NOT NULL 로 변경 불가능
 
 */
-
--- COPY % PASTE
-/*
-	CREATE TABLE product_tbl(
-	        pro_num             NUMBER  CONSTRAINT  pk_pro_num         PRIMARY KEY,
-	        cg_code             NUMBER            NULL,
-	        pro_name            VARCHAR2(50)            NOT NULL,
-	        pro_price           NUMBER                  NOT NULL,
-	        pro_discount        NUMBER                  NOT NULL,
-	        pro_publisher       VARCHAR2(50)            NOT NULL,
-	        pro_content         VARCHAR2(4000)  (CLOB)  NOT NULL,    
-	        pro_up_folder       VARCHAR2(50)             NOT NULL,
-	        pro_img             VARCHAR2(50)             NOT NULL,  
-	        pro_amount          NUMBER                  NOT NULL,
-	        pro_buy             CHAR(1)                 NOT NULL,
-	        pro_date            DATE DEFAULT sysdate    NOT NULL,
-	        pro_updatedate      DATE DEFAULT sysdate    NOT NULL,
-	        FOREIGN KEY(cg_code) REFERENCES category_tbl(cg_code)
-        );
-*/
-
 DROP TABLE PRODUCT_TBL;
 CREATE TABLE PRODUCT_TBL(
         PRO_NUM             NUMBER  CONSTRAINT  PK_PRO_NUM         PRIMARY KEY,
         CG_CODE            NUMBER            NULL,
         PRO_NAME            VARCHAR2(50)            NOT NULL,
-        PRO_PRICE           NUMBER                   NOT NULL,
+        PRO_PRICE           NUMBER                  NOT NULL,
         PRO_DISCOUNT        NUMBER                  NOT NULL,
         PRO_PUBLISHER       VARCHAR2(50)            NOT NULL,
         PRO_CONTENT         VARCHAR2(4000)  /* CLOB */                  NOT NULL,       -- 내용이 4000BYTE 초과여부판단?
         PRO_UP_FOLDER       VARCHAR2(50)             NOT NULL,
         PRO_IMG             VARCHAR2(100)             NOT NULL,  -- 날짜폴더경로가 포함하여 파일이름저장
         PRO_AMOUNT          NUMBER                  NOT NULL,
-        PRO_BUY             CHAR(1)                 NOT NULL, -- VARCHAR(10) -> CHAR(1)
+        PRO_BUY             VARCHAR2(10)                 NOT NULL,
         PRO_DATE            DATE DEFAULT SYSDATE    NOT NULL,
         PRO_UPDATEDATE      DATE DEFAULT SYSDATE    NOT NULL,
         FOREIGN KEY(CG_CODE) REFERENCES CATEGORY_TBL(CG_CODE)
@@ -295,8 +270,7 @@ CREATE TABLE PRODUCT_TBL(
 
 -- pro_num, cg_code, pro_name, pro_price, pro_discount, pro_publisher, pro_content, pro_up_folder, pro_img, pro_amount, pro_buy, pro_date, pro_updatedate
 
--- 상품 테이블의 상품코드 컬럼(pro_num)에 사용하기 위한 목적
-CREATE SEQUENCE SEQ_PRODUCT_TBL;
+
 
 -- 상품마다 이미지의 개수가 다를 경우 별도의 테이블을 구성(권장)
 -- 상품설명 컬럼에 웹에디터를 이용한 태그코드 내용이 저장된다.
@@ -304,18 +278,10 @@ CREATE SEQUENCE SEQ_PRODUCT_TBL;
 -- PRO_CONTENT컬럼이 CLOB 데이타 타입은 비교명령어를 지원안함.
 SELECT * FROM product_tbl ORDER BY PRO_CONTENT ASC;
 
--- cg_code, pro_name, pro_price, pro_discount, pro_publisher, pro_content, pro_up_folder, pro_img, pro_amount, pro_buy
-/*
-INSERT INTO
-		PRODUCT_TBL (CG_CODE, PRO_NAME, PRO_PRICE, PRO_DISCOUNT, PRO_PUBLISHER, PRO_CONTENT, PRO_UP_FOLDER, PRO_IMG, PRO_AMOUNT, PRO_BUY)
-VALUES
-  (#{cg_code}, #{pro_name}, #{pro_price}, #{pro_discount}, #{pro_publisher}, #{pro_content}, #{pro_up_folder}, #{pro_img}, #{pro_amount}, #{pro_buy})
-*/
+
 
 -- 상품등록작업
 -- pro_up_folder 컬럼 : 업로드파일의 저장 날짜폴더이름.   운영체제별 경로구분자  유형1) /2023/04/06/   유형2)\2023\04\06\ 역슬래쉬
-
-
 
 
 -- 1차카테고리 : TOP (코드 : 1)
@@ -437,16 +403,15 @@ create sequence seq_cart_code;
 
 -- 장바구니에 로그인 사용자가 상품을 추가시, 존재 할경우는 수량변경, 존재 하지않는 경우 장바구니 추가(담기)
 
--- [Oracle] 오라클 MERGE INTO 사용법 & 노하우 정리: https://gent.tistory.com/406
-MERGE INTO cart_tbl
-USING dual -- 다른 테이블이 필요하지 않을 경우
-ON (mbsp_id = 'id값' AND pro_num = '상품코드')
-WHEN MATCHED THEN
-    UPDATE
-        SET cart_amount = cart_amount + 수량
-WHEN NOT MATCHED THEN
-    INSERT(cart_code, pro_num, mbsp_id, cart_amount)
-    VALUES(seq_cart_code.NEXTVAL,#{pro_num},#{mbsp_id},#{cart_amount})
+merge into cart_tbl
+using dual
+on (MBSP_ID = 'id값' and PRO_NUM = '상품코드')
+when matched then
+    update
+        set CART_AMOUNT = CART_AMOUNT + 수량
+when not matched then
+    insert(cart_code, pro_num, mbsp_id, cart_amount)
+    values(seq_cart_code.nextval,#{pro_num},#{mbsp_id},#{cart_amount})
 
 
 
@@ -464,7 +429,7 @@ SELECT * FROM CART_TBL WHERE MBSP_ID = ?;
 */
 MERGE
     INTO CART_TBL C
-USING DUAL -- 다른 테이블이 필요하지 않을 경우
+USING DUAL
     ON (C.MBSP_ID = ?) AND (C.PRO_NUM = ?)
  WHEN MATCHED THEN
     UPDATE
@@ -497,15 +462,8 @@ COMMIT;
   - 2)장바구니 사용 안하고, 바로구매.
  
 */
--- 장바구니 리스트 조회 ─ ANSI 조인(표준 조인)
-SELECT
-  C.CART_CODE, C.PRO_NUM, C.CART_AMOUNT, P.PRO_NAME, P.PRO_PRICE, P.PRO_UP_FOLDER, P.PRO_IMG, P.PRO_DISCOUNT 
-FROM 
-  PRODUCT_TBL P 
-    INNER JOIN CART_TBL C 
-    ON P.PRO_NUM = C.PRO_NUM
-WHERE
-  C.MBSP_ID = 'user01';
+-- 장바구니 리스트 조회
+
 
 
 
@@ -552,19 +510,17 @@ DELETE FROM cart_tbl WHERE mbsp_id = 'user01';
 */
 DROP TABLE ORDER_TBL;
 --5.주문내용 테이블
-CREATE TABLE order_tbl(
-        ord_code            NUMBER                  PRIMARY KEY,
-        mbsp_id             VARCHAR2(15)            NOT NULL,
-        ord_name            VARCHAR2(30)            NOT NULL,
-        ord_zipcode         CHAR(5)                 NOT NULL,
-        ord_addr_basic      VARCHAR2(50)            NOT NULL,
-        ord_addr_detail     VARCHAR2(50)            NOT NULL,
-        ord_tel             VARCHAR2(20)            NOT NULL,
-        ord_price           NUMBER                  NOT NULL,  -- 총 주문 금액. 선택
-        ord_regdate         DATE DEFAULT sysdate    NOT NULL,
-        ord_status          VARCHAR2(20)            NOT NULL, -- 주문 상태
-        payment_status      VARCHAR2(20)            NOT NULL, -- 결제 상태
-        FOREIGN KEY(mbsp_id) REFERENCES mbsp_tbl(mbsp_id)
+CREATE TABLE ORDER_TBL(
+        ORD_CODE            NUMBER                  PRIMARY KEY,
+        MBSP_ID             VARCHAR2(15)            NOT NULL,
+        ORD_NAME            VARCHAR2(30)            NOT NULL,
+        ORD_ADDR_NUM        CHAR(5)                 NOT NULL,
+        ORD_ADDR_BASIC      VARCHAR2(50)            NOT NULL,
+        ORD_ADDR_DETAIL     VARCHAR2(50)            NOT NULL,
+        ORD_TEL             VARCHAR2(20)            NOT NULL,
+        ORD_PRICE           NUMBER                  NOT NULL,  -- 총주문금액. 선택
+        ORD_REGDATE         DATE DEFAULT SYSDATE    NOT NULL,
+        FOREIGN KEY(MBSP_ID) REFERENCES MBSP_TBL(MBSP_ID)
 );
 
 
@@ -573,32 +529,14 @@ values
 
 
 DROP TABLE ORDETAIL_TBL;
---6.주문상세 테이블: 중복되는 부분이 있어 테이블을 분리하여 작업(데이터베이스 모델링)
-CREATE TABLE ordetail_tbl(
-        ord_code        NUMBER      NOT NULL REFERENCES order_tbl(ord_code),
-        pro_num         NUMBER      NOT NULL REFERENCES product_tbl(pro_num),
-        dt_amount       NUMBER      NOT NULL,
-        dt_price        NUMBER      NOT NULL,  -- 역정규화
-        PRIMARY KEY (ord_code ,pro_num) 
+--6.주문상세 테이블
+CREATE TABLE ORDETAIL_TBL(
+        ORD_CODE        NUMBER      NOT NULL REFERENCES ORDER_TBL(ORD_CODE),
+        PRO_NUM         NUMBER      NOT NULL REFERENCES PRODUCT_TBL(PRO_NUM),
+        DT_AMOUNT       NUMBER      NOT NULL,
+        DT_PRICE        NUMBER      NOT NULL,  -- 역정규화
+        PRIMARY KEY (ORD_CODE ,PRO_NUM) 
 );
-
--- 시퀀스 생성: 주문번호 목적으로 사용
-CREATE SEQUENCE SEQ_ORD_CODE;
-
--- 주문 테이블: ORDER_TBL
-ord_code, mbsp_id, ord_name, ord_zipcode, ord_addr_basic, ord_addr_detail, ord_tel, ord_price, ord_regdate, ord_status, payment_status
-
--- 주문 상세 테이블 참조(장바구니 테이블 참조)
--- INSERT ~ SELECT 문
-/*
-INSERT 주문 상세 테이블
-SELECT 장바구니 테이블
-*/
-INSERT ORDETAIL_TBL(ord_code, pro_num, dt_amount, dt_price)
-
-SELECT #{ord_code}, c.pro_num, c.cart_amount, p.pro_price 
-FROM CART_TBL C INNER JOIN PRODUCT_TBL P ON C.PRO_NUM = P.PRO_NUM
-WHERE mbsp_id = #{mbsp_id};
 
 insert into ORDETAIL_TBL(ord_code, pro_num, dt_amount, dt_price)
 select c.pro_num, c.cart_amount, p.pro_price
@@ -790,28 +728,19 @@ ALTER TABLE BOARD_TBL ADD CONSTRAINT FK_BOARD_MBSP_ID
 FOREIGN KEY (MBSP_ID) REFERENCES MBSP_TBL(MBSP_ID);
 
 --9.관리자(ADMIN)테이블
-CREATE TABLE admin_tbl (
-    admin_id    VARCHAR2(15)    PRIMARY KEY,
-    admin_pw    CHAR(60)    NOT NULL,
-    admin_visit_date    DATE
+CREATE TABLE ADMIN_TBL (
+    ADMIN_ID    VARCHAR2(15)    PRIMARY KEY,
+    ADMIN_PW    CHAR(60)    NOT NULL,
+    ADMIN_VISIT_DATE    DATE
 );
-
-/*
-CREATE TABLE admin_tbl (
-    admin_id    VARCHAR2(15)    PRIMARY KEY,
-    admin_pw    CHAR(60)    NOT NULL,
-    admin_visit_date    DATE
-);
-*/
 
 admin_id, admin_pw, admin_visit_date
 
 INSERT INTO ADMIN_TBL VALUES('admin', '$2a$10$dQFCMr0udCI865eG6SoIcOaNr3Y/dgBX.R4qf6rX5KA3jciSnnNjG',sysdate);
 
+
 commit;
 
-SELECT * FROM admin_tbl;
-SELECT * FROM ADMIN_TBL WHERE ADMIN_ID = 'admin' and admin_pw = '1234'; -- 사용 불가
 
 -- 인덱스 힌트 문법설명
 -- BOARD_TBL 게시판테이블 더미데이터 작업
@@ -876,23 +805,16 @@ FROM (
     )
 WHERE RN >=4 AND RN <=6;
 
--- 결제 테이블(카카오 페이)
-CREATE TABLE PAYMENT (
-  PAY_CODE          NUMBER PRIMARY KEY,        -- 일련번호
-  ORD_CODE          NUMBER NOT NULL,        -- 주문번호
-  MBSP_ID           VARCHAR2(50) NOT NULL,  -- 회원 ID
-  PAY_METHOD        VARCHAR2(50) NOT NULL,  -- 결제방식
-  PAY_DATE          DATE  NULL,             -- 결제일
-  PAY_TOT_PRICE     NUMBER NOT NULL,        -- 결제금액
-  PAY_NOBANK_PRICE  NUMBER NULL,        -- 무통장 입금금액
-  PAY_REST_PRICE    NUMBER NULL,               --미지급금
-  -- PAY_NOBANK_USER   VARCHAR2(50) NULL,    -- 무통장 입금자명
-  PAY_NOBANK        VARCHAR2(50) NULL,            -- 입금은행
-  PAY_MEMO          VARCHAR2(50) NULL,             --메모
-  PAY_BANKACCOUNT   VARCHAR2(50) NULL
-);
 
 
-CREATE SEQUENCE SEQ_PAYMENT_CODE;
 
-pay_code, ord_code, mbsp_ip, pay_method, pay_date, pay_tot_price, pay_nobank_price, pay_nobank_user, pay_nobank, pay_memo
+
+
+
+
+
+
+
+
+
+
