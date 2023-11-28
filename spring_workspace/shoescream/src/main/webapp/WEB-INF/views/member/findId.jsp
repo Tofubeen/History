@@ -50,7 +50,7 @@
       <h3 class="box-title">아이디찾기</h3>
       </div>
       
-      <form role="form" id="joinForm" method="post" action="/member/join">
+      <form role="form" id="joinForm" method="post" action="/member/findId">
       <div class="box-body">
       <div class="form-group row">
         <label for="mbsp_name" class="col-2">이름</label>
@@ -83,13 +83,16 @@
   $(document).ready(function() {
   
       $("#btnIdCheck").click(function() {
-        console.log("아이디:" );
+        console.log("이름 " + $("#mbsp_name").val()  );
+        console.log("이메일 " + $("#mbsp_email").val()  );
+
         if($("#mbsp_name").val() == "" || $("#mbsp_email").val() == "" ) {
           alert("이름 혹은 이메일 항목을 확인 해주세요.")
           return;
         }
 
-              // 아이디 중복체크
+              //찾은 아이디 전송
+              
       $.ajax({
         url : '/member/findIdCheck',
         type: 'get',
@@ -98,12 +101,10 @@
               mbsp_email : $("#mbsp_email").val()
         },
         success: function(result) {
-          if(result == "yes") {
-            alert("아이디 사용가능");
-          }else {
-            alert("아이디 사용불가능");
-            $("#mbsp_id").val(""); // 아이디 텍스트박스를 값을 지움
-            $("#mbsp_id").focus(); // 포커스
+          if(!result == "") {
+            alert("귀하의 아이디는 " + result + "입니다");
+          }else{
+            alert("정보와 일치하는 아이디가 없습니다");
           }
         }
       });

@@ -7,30 +7,29 @@ import lombok.Setter;
 import lombok.ToString;
 
 /*
- * 주요 사용되는 기능
-   - 회원가입, 회원 수정 폼, 회원 수정하기
-   - DB 회원 테이블에서 정보를 읽어올 때
-*/
+ - 주요사용되는 기능
+ - 회원가입하기, 회원수정 폼, 회원수정하기
+ - db회원테이블에서 정보를 읽어올 때 
+ */
 
-@Getter
-@Setter
+
 @ToString
+@Setter
+@Getter
 public class MemberVO {
-	
-	// SQL Developer에서 구문 Copy & Paste 후 작업
-	
-	// 멤버 필드 
-	private String mbsp_id;
-	private String mbsp_password;
-	private String mbsp_name;
-	private String mbsp_phone;
-	private String mbsp_email;
-	private String mbsp_zipcode;
-	private String mbsp_addr;
-	private String mbsp_deaddr;
-	private int mbsp_point;
-	private Date mbsp_lastlogin;
-	private Date mbsp_datesub;
-	private Date mbsp_updatedate;
+
+	//멤버필드
+	private String	mbsp_id;
+	private String	mbsp_name;
+	private String	mbsp_email;
+	private String	mbsp_password;
+	private String	mbsp_zipcode;
+	private String	mbsp_addr;
+	private String	mbsp_deaddr;
+	private String	mbsp_phone;
+	private int		mbsp_point;
+	private Date	mbsp_lastlogin;
+	private Date	mbsp_datesub;
+	private Date	mbsp_updatedate;
 	
 }
