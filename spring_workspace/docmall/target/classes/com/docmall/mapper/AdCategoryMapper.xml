@@ -39,5 +39,28 @@
 	
 	</select>
 	
+	<!-- 테이블의 컬럼명과 클래스의 필드명이 달라서, 컬럼 as 별칭으로 일치시킴. -->
+	<select id="getCateInfo1" resultType="com.docmall.domain.CateVO">
+		SELECT 
+			cg_code AS cate_code, CG_PARENT_CODE AS cate_parent_code, CG_NAME AS cate_name 
+		FROM 
+			CATEGORY_TBL
+	
+	</select>
+	<!-- 테이블의 컬럼명과 클래스의 필드명이 달라서, resultMap으로 작업. -->
+	<select id="getCateInfo2" resultMap="categoryMap">
+		SELECT 
+			cg_code, CG_PARENT_CODE, CG_NAME
+		FROM 
+			CATEGORY_TBL
+	
+	</select>
+	
+	<resultMap type="com.docmall.domain.CateVO" id="categoryMap">
+		<id property="cate_code" column="cg_code"/>
+		<result property="cate_parent_code" column="CG_PARENT_CODE"/>
+		<result property="cate_name" column="CG_NAME"/>
+	</resultMap>
+	
 
 </mapper>  

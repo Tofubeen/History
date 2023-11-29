@@ -1,5 +1,6 @@
 package com.docmall.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,10 +34,13 @@ public class FindController {
 	}
 
 	@GetMapping("/findIdCheck")
-	public String findIdCheck(@RequestParam("mbsp_name") String mbsp_name, @RequestParam("mbsp_email") String mbsp_email, Model model) {
+	public ResponseEntity<String> findIdCheck(@RequestParam("mbsp_name") String mbsp_name, @RequestParam("mbsp_email") String mbsp_email, Model model) {
 
+		ResponseEntity<String> entity = null;
 		String findId = findService.findIdCheck(mbsp_name, mbsp_email);
 		String url = "/";
+
+
 
 		if(findId != null) {
 			model.addAttribute("result", findId);
@@ -44,7 +48,7 @@ public class FindController {
 
 
 
-		return "redirect:" + url;
+		return entity;
 	}
 
 
