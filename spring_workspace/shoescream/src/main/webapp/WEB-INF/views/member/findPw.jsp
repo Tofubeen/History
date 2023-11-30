@@ -70,7 +70,7 @@
       </div>
       
       <div class="box-footer">
-      <button type="button" class="btn btn-primary" id="checkIdEmail">임시비밀번호발송</button>
+      <button type="button" class="btn btn-primary" id="newPw">임시비밀번호발송</button>
       </div>
       </form>
       </div>
@@ -85,20 +85,24 @@
 <script>
  
   $(document).ready(function() {
-    
-    let useBtCheck = false; // 아이디 중복체크 사용유무 확인
-    
+
     // document.getElementById("idCheck");
-    $("#checkIdEmail").click(function() {
-      if($("#mbsp_id").val() || $("#mbsp_email").val() == "") {
-        alert("ID 혹은 Email를 입력바랍니다");
-        $("#mbsp_id").focus();
-        return;
-      }
+    $("#newPw").click(function() {
+
+      console.log("아이디 " + $("#mbsp_id").val()  );
+      console.log("이메일 " + $("#mbsp_email").val()  );
+
+      // if($("#mbsp_id").val() || $("#mbsp_email").val() == "") {
+      //   alert("ID 혹은 Email를 입력바랍니다");
+      //   $("#mbsp_id").focus();
+      //   return;
+      // }
+
+
 
 
       $.ajax ({
-        url:'/member/checkIdEmail',
+        url:'/member/newPw',
         type: 'get',
         dataType: 'text',
         data: {
@@ -106,6 +110,7 @@
         mbsp_email: $("#mbsp_email").val()
         },
         success: function(result) {
+          /*
           if(result == "yes") {
             useIDCheck = true;
             alert("임시비밀번호를 발송합니다");
@@ -113,19 +118,43 @@
             alert("아이디 이메일이 틀립니다");
             useIDCheck = false;
           }
+          */
+          alert(result);
         }
     });
 
-
-    if(!useIDCheck) {
-        alert("아이디,이메일 확인바랍니다.");
-        return;
-      }
         })
   
+/*
+        $("#btnIdCheck").click(function() {
+        console.log("이름 " + $("#mbsp_name").val()  );
+        console.log("이메일 " + $("#mbsp_email").val()  );
 
+        if($("#mbsp_name").val() == "" || $("#mbsp_email").val() == "" ) {
+          alert("이름 혹은 이메일 항목을 확인 해주세요.")
+          return;
+        }
 
+              //찾은 아이디 전송
+              
 
+      $.ajax({
+        url : '/member/findIdCheck',
+        type: 'get',
+        dataType: 'text',
+        data: {mbsp_name : $('#mbsp_name').val(),
+              mbsp_email : $("#mbsp_email").val()
+        },
+        success: function(result) {
+          if(!result == '') {
+            alert("귀하의 아이디는 " + result + "입니다");
+            location.href = "/member/login";
+          }else{
+            alert("정보와 일치하는 아이디가 없습니다");
+          }
+        }
+      });
+*/
   });
 </script>
   </body>

@@ -14,8 +14,12 @@ public class FindServiceImpl implements FindService {
 
 	@Override
 	public String findIdCheck(String mbsp_name, String mbsp_email) {
-		// TODO Auto-generated method stub
 		return findMapper.findIdCheck(mbsp_name, mbsp_email);
+	}
+
+	@Override
+	public String findPw(String mbsp_id, String mbsp_email) {
+		return findMapper.findPw(mbsp_id, mbsp_email);
 	}
 
 

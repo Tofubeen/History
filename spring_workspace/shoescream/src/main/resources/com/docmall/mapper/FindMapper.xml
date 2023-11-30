@@ -16,7 +16,7 @@
 		MBSP_EMAIL=#{mbsp_email}
 </select>
 
-<select id="checkIdEmail" parameterType="String" resultType="String">
+<select id="findPw" parameterType="Map" resultType="String">
 
 SELECT 
     MBSP_PASSWORD

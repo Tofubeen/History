@@ -18,15 +18,7 @@ public class AdOrderServiceImpl implements AdOrderService {
 
 	private final AdOrderMapper adOrderMapper;
 
-	@Override
-	public List<OrderVO> order_list(Criteria cri) {
-		return adOrderMapper.order_list(cri);
-	}
 
-	@Override
-	public int getTotalCount(Criteria cri) {
-		return adOrderMapper.getTotalCount(cri);
-	}
 
 	@Override
 	public List<OrderDetailInfoVO> orderDetailInfo1(Long ord_code) {
@@ -43,6 +35,18 @@ public class AdOrderServiceImpl implements AdOrderService {
 	@Override
 	public void order_product_delete(Long ord_code, Integer pro_num) {
 		adOrderMapper.order_product_delete(ord_code, pro_num);
+	}
+
+	@Override
+	public List<OrderVO> order_list(Criteria cri, String start_date, String end_date) {
+		// TODO Auto-generated method stub
+		return adOrderMapper.order_list(cri, start_date, end_date);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri, String start_date, String end_date) {
+		// TODO Auto-generated method stub
+		return adOrderMapper.getTotalCount(cri, start_date, end_date);
 	}
 
 }

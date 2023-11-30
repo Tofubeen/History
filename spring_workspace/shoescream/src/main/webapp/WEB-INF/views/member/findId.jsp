@@ -93,16 +93,18 @@
 
               //찾은 아이디 전송
               
+
       $.ajax({
         url : '/member/findIdCheck',
         type: 'get',
         dataType: 'text',
-        data: {mbsp_name : $("#mbsp_name").val(),
+        data: {mbsp_name : $('#mbsp_name').val(),
               mbsp_email : $("#mbsp_email").val()
         },
         success: function(result) {
-          if(!result == "") {
+          if(!result == '') {
             alert("귀하의 아이디는 " + result + "입니다");
+            location.href = "/member/login";
           }else{
             alert("정보와 일치하는 아이디가 없습니다");
           }

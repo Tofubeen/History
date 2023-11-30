@@ -5,21 +5,34 @@
 <mapper namespace="com.docmall.mapper.AdOrderMapper">
 
 	<!-- 공통된 sql구문작업 : 검색조건 -->
+	<!-- 검색기능을 사용하지 않으면 , foreach문이 동작하지 않는다 -->
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-			<foreach collection="typeArr" item="type">
+			<foreach collection="cri.typeArr" item="type">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'N'.toString()">
-                            ORD_CODE like '%' || #{keyword} || '%'
+						<when test="cri.type == 'N'.toString()">
+                            ORD_NAME like '%' || #{cri.keyword} || '%'
 						</when>
-						<when test="type == 'C'.toString()">
-                            ORD_NAME	 like '%' || #{keyword} || '%'
+						<when test="cri.type == 'C'.toString()">
+                            ORD_CODE like '%' || #{cri.keyword} || '%'
 						</when>					
 					</choose>
 				</trim>
 			</foreach>
 		</trim>
+	
+	</sql>
+	
+	<sql id="period">
+	
+	<if test="start_date != null and !start_date.equals('')">
+		<![CDATA[
+		
+			ORD_REGDATE >= to_date(#{start_date}) AND ORD_REGDATE < to_date(#{end_date}) + 1 AND
+		
+		]]>
+	</if>
 	
 	</sql>
 	
@@ -39,12 +52,14 @@
 		    ]]>
 		    
 		    <include refid="criteria"></include>
+		    <include refid="period"></include>
+		    
 		    
 		    <![CDATA[
-		        rownum <= #{pageNum} * #{amount}
+		        rownum <= #{cri.pageNum} * #{cri.amount}
 		    )
 		where 
-		    rn > (#{pageNum} -1) * #{amount}
+		    rn > (#{cri.pageNum} -1) * #{cri.amount}
 		]]>
 	</select>
 	
@@ -52,6 +67,7 @@
 		select count(*) from ORDER_TBL where
 		
 		<include refid="criteria"></include>
+		<include refid="period"></include>
 		
 		ORD_CODE > 0
 	</select>

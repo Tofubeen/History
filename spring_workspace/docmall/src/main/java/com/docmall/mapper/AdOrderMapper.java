@@ -12,9 +12,9 @@ import com.docmall.dto.Criteria;
 public interface AdOrderMapper {
 
 	//데이터가 여러개면 List 단독이면 List가 빠진다
-	List<OrderVO> order_list(Criteria cri);
+	List<OrderVO> order_list(@Param("cri")Criteria cri ,@Param("start_date")String start_date,@Param("end_date")String end_date);
 
-	int getTotalCount(Criteria cri);
+	int getTotalCount(@Param("cri")Criteria cri ,@Param("start_date")String start_date,@Param("end_date")String end_date);
 
 	List<OrderDetailInfoVO> orderDetailInfo1(Long ord_code);
 

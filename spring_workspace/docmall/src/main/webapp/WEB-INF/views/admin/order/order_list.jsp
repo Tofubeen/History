@@ -124,6 +124,9 @@ desired effect
 									<input type="text" name="keyword" value="${pageMaker.cri.keyword}" />
 									<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}" />
 									<input type="hidden" name="amount" value="${pageMaker.cri.amount}" />
+                  날짜검색 : <input type="date" name="start_date" value="${start_date}">
+                  ~
+                  <input type="date" name="end_date" value="${end_date}">
 									<button type="submit" class="btn btn-primary">검색</button>
 							</form>
 						</div>
@@ -315,7 +318,12 @@ desired effect
       actionForm.attr("action", "/admin/order/order_list");
       actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 
-       actionForm.submit();
+      //<input type="date" name="start_date" value="${start_date}">
+
+      actionForm.append('<input type="date" name="start_date" value="${start_date}">');
+      actionForm.append('<input type="date" name="end_date" value="${end_date}">');
+
+      actionForm.submit();
     });
    
 
@@ -389,7 +397,18 @@ desired effect
 
     let url = "/admin/order/order_detail_info2/" + ord_code;
 
-    $("#order_detail_content").load(url);
+    $.ajaxSetup( {
+      'headers' : {
+        'AJAX' : 'true'
+      }
+    });
+
+    $("#order_detail_content").load(url, function(response , status, xhr) {
+      if(status == "error") {
+        alert("관리자 로그인으로 이동합니다");
+        location.href = "/admin/intro";
+      }
+    });
     // modal() : 부트스트랩 4.6 메서드
     $("#order_detail_modal").modal('show');
   });
