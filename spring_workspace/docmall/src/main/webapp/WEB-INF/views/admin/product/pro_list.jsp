@@ -96,6 +96,7 @@ desired effect
 								<th style="width: 10%">수정</th>
 								<th style="width: 10%">삭제</th>
 							</tr>
+              <!--"${pro_list }" 에 들어온 정보는 "productVO" 타입의 정보이다 -->
 							<c:forEach items="${pro_list }" var="productVO">
 							<tr>
 								<td><input type="checkbox" name="check" value="${productVO.pro_num }"></td>
@@ -105,7 +106,7 @@ desired effect
 									<a class="move pro_name" href="#" data-bno="${productVO.pro_num }">${productVO.pro_name }</a>
 								</td>
 								<td><input type="text" name="pro_price" value="${productVO.pro_price }"></td>
-								<td><fmt:formatDate value="${productVO.pro_date }" pattern="yyyy-MM-dd" /></td>
+								<td><fmt:formatDate value="${productVO.pro_date }" pattern="yyyy-MM-dd" /></td> <!--"${productVO.(필드명) }"-->
 								<td>
 									<select id="pro_buy" name="pro_buy">
 										<option value="Y" ${productVO.pro_buy == 'Y'? 'selected':''} >판매가능</option>
@@ -147,14 +148,14 @@ desired effect
 									<!-- [이전] 11	12	13	14	15 16	17	18	19	20   -->
 									<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
 										<li class='page-item ${pageMaker.cri.pageNum ==  num ? "active":"" }'aria-current="page">
-											<a class="page-link movepage" href="${num }" data-page="${num }">${num }</a>
+											<a class="page-link movepage" href="${num }">${num }</a>
 										</li>
 									</c:forEach>
 									
 									<!--  다음 표시여부 -->
 									<c:if test="${pageMaker.next }">
 										<li class="page-item">
-										<a href="${pageMaker.endPage + 1 }" class="page-link movepage" href="#">Next</a>
+										<a href="${pageMaker.endPage + 1 }" class="page-link movepage">Next</a>
 										</li>
 									</c:if>
 									
@@ -262,7 +263,7 @@ desired effect
 <script>
   $(document).ready(function() {
 
-    let actionForm = $("#actionForm");
+    let actionForm = $("#actionForm"); //전역변수 설정
 
     // [이전] 1 2 3 4 5 [다음] 클릭 이벤트 설정. <a>태그
     $(".movepage").on("click", function(e) {
@@ -271,8 +272,19 @@ desired effect
       actionForm.attr("action", "/admin/product/pro_list");
       actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 
-       actionForm.submit();
+      actionForm.submit();
     });
+
+    //상품명 이미지 또는 상풍명 클릭시 
+    $("a.move").on("click" , function(e) {
+      e.preventDefault();
+
+    actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+
+    actionForm.submit();
+    })
+
+
     
     // 목록에서 제목행 체크박스 선택
     let isCheck = true;

@@ -3,10 +3,12 @@ package com.docmall.domain;
 // cg_code, cg_parent_code, cg_name
 public class CategoryVO {
 
+	//테이블의 컬럼명과 필드명을 동일하게 함
+	//동일하지 않게 할려면 1) 컬럼명 AS 별칭사용해서 변경 2) MTBATIS RESULTMAP 사용으로 대체
 	private Integer cg_code; // 1, 2차 모든카테고리코드
 	private Integer cg_parent_code; // 1차카테고리코드
 	private String cg_name;
-	
+
 	// @Getter, @Setter
 	public Integer getCg_code() {
 		return cg_code;
@@ -26,12 +28,12 @@ public class CategoryVO {
 	public void setCg_name(String cg_name) {
 		this.cg_name = cg_name;
 	}
-	
+
 	// @ToString
 	@Override
 	public String toString() {
 		return "CategoryVO [cg_code=" + cg_code + ", cg_parent_code=" + cg_parent_code + ", cg_name=" + cg_name + "]";
 	}
-	
-	
+
+
 }

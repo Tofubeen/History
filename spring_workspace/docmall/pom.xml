@@ -100,7 +100,7 @@
 			<scope>provided</scope>
 		</dependency>
 		 -->
-		 <!-- 서블릿 버전과 web.xml 버전을 동일하게 한다. -->
+		 <!-- pom.xml 서블릿 버전과 web.xml 서블릿 버전을 동일하게 한다. -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>

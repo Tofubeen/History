@@ -109,7 +109,8 @@
 </div>
 
 <%@include file="/WEB-INF/views/comm/plugIn.jsp" %>
-  <!-- 카테고리 메뉴 자바스크립트 작업소스 -->
+  <!-- (리소스 폴더 안에 들어있음), 카테고리 메뉴 자바스크립트 작업소스 -->
+  <!-- js경로를 사용할려면 ,servlet-context.xml 파일에서 <resource> 설정해야한다 -->
   <script src="/js/category_menu.js"></script>  
   </body>
 </html>

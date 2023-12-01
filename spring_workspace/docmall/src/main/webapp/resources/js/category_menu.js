@@ -48,6 +48,14 @@ $(document).ready(function() {
 		//https://travelpark.tistory.com/30
 		//한글이나 특수문자를 서버에 보낼때 오류가 나는 경우
 		// 인코딩 과정을 통하여 보내서 처리할 수가 있다.
+		
+		//1) 현재파일이 jsp일경우 아래처럼 사용하는 경우 ${cg_code} 변수로 인식하는 것이 아니라 jsp의 el 문법으로 서버에서 동작이 된다 (주의)
+		//location.href = `/user/product/pro_list?cg_code=${cg_code}&cg_name=${cg_name}`; //문제발생
+		
+		//권장
+		//location.href = '/user/product/pro_list?cg_code=' + ${cg_code} + '&cg_name=' + ${cg_name};
+		
+		//2) 현재파일이 js 인 경우
 		location.href = `/user/product/pro_list?cg_code=${cg_code}&cg_name=${cg_name}`;
 	});
 });
